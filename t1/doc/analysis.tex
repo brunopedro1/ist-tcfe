@@ -106,6 +106,12 @@ The Table~\ref{tab:meshV} shows the results from these equations:
   \label{tab:meshV}
 \end{table}
 
+The previous equations already included the relations necessary to determine the current of each component of the circuit using the currents of the meshes. As an exemple, the current of $R_3$ can be determined using the relation:
+
+\begin{equation}
+  I(R_3) = I_B - I_A
+  \label{eq:IR3}
+\end{equation}
 
 \subsection{Node Analysys}
 
@@ -209,10 +215,19 @@ The results of the previous system of equations are shown in Table~\ref{tab:node
 \end{table}
 
 After finding the voltages of every node, Kirchoff's Voltage Law was applied in order to check the results. 
-In the upper left and lower right meshes, the sum of all potential differences was, in fact, 0. 
-In the upper right and lower left meshes, the result was, respectively, $-5.551115123125783e-17$ and $-8.881784197001252e-16$, which are both very close to 0.
+On the meshes A and D, the sum of all potential differences was, in fact, 0. 
+On the meshes B and C, the result was, respectively, $-5.551115123125783e-17$ and $-8.881784197001252e-16$, which are both very close to 0.
 
+The information of the node voltages is enough to determine the current of each component of the circuit, using the Ohm's Law. As as example, the following relations can be used to determine the current of $R_3$:
 
+\begin{equation}
+  V(R_3) = V_1 - V_4
+  \label{eq:VR3n}
+\end{equation}
 
+\begin{equation}
+  I(R_3) = \frac{V(R_3)}{R_3}
+  \label{eq:IR3n}
+\end{equation}
 
 

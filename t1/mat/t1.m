@@ -67,5 +67,5 @@ E = [Z;Z;-Va;Id;Id;Z;Z]
 F = D\E
 
 printf('op_TAB2\n');
-printf('v(1) = %f\nv(2) = %f\nv(3) = %f\nv(4) = %f\nv(5) = %f\nv(6) = %f\nv(8) = %f\n', F(1,1),F(2,1),F(3,1),F(4,1),F(5,1),F(6,1),F(7,1));
+printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_4$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_8$ = %f\n', F(1,1),F(2,1),F(3,1),F(4,1),F(5,1),F(6,1),F(7,1));
 printf('op_END2\n');

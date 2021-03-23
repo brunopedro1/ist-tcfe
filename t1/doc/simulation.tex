@@ -4,8 +4,10 @@
 \subsection{Operating Point Analysis}
 
 Table~\ref{tab:op} shows the simulated operating point results for the circuit
-under analysis. Compared to the theoretical analysis results, one notices the
-following differences: describe and explain the differences.
+under analysis. 
+
+Comparing the simulation results of the node voltages to the ones obtained in the theoretical analysis (Table~\ref{tab:meshV} and Table~\ref{tab:nodeV}) we can realize that they are the same or virtually the same.
+Using the relations refered in Section~\ref{sec:analysis} we can also conclude that since the node voltages are the same, then the currents of each component of the circuit are also the same as expected using the theoretical methods.
 
 \begin{table}[h]
   \centering
@@ -20,6 +22,10 @@ following differences: describe and explain the differences.
   \label{tab:op}
 \end{table}
 
-\lipsum[1-1]
+The circuit was built through a Ngspice script with a "netlist" where the various components were introduced through their element type label, which is predefined by Ngspice, followed by a name for the component to differentiate it from the others. Besides the type and name, each component was identified with its two nodes on the circuit and the values of its characteristic parameters. For some components, NGSPICE need some more information to be provided. An example of this are the dependent sources, which are present in the circuit in study. 
+For the voltage-controlled current source (VCCS) it was also necessary to provide information of the two nodes where the control-voltage was. 
+For the current-controlled voltage source (CCVS) it was necessary the addition of a voltage source with 0V between the node 6 and the resistor 7, and subsequently the addition of a new node, named node 7, placed before the resistor 7. This addition is crucial for the CCVS input because this new voltage source will sense its control current.
+
+The analysis done is an operating point analysis, which gives as outputs the voltage at each node and the current of the various components of the circuit. This is a type of DC analysis, a kind of analysis that does not consider any time dependence on any sources within the circuit.
 
 
