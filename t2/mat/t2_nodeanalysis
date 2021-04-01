@@ -1,0 +1,31 @@
+% T2
+format long 
+
+% Units for the values: V, mA, kOhm, mS and uF
+% Values:  
+R1 = 1.04001336091 
+R2 = 2.04372276851 
+R3 = 3.11359737601 
+R4 = 4.17085404861 
+R5 = 3.02859283303 
+R6 = 2.070545767 
+R7 = 1.01835949725 
+Vs = 5.20102702949 
+C = 1.00460501759 
+Kb = 7.19043597753 
+Kd = 8.06397385506 
+
+% 1) Nodal analysis (t<0)
+
+% Using supernode
+
+A = [-(1/R1)-(1/R2)-(1/R3),(1/R2),(1/R3),0,0,0; ... % node 2
+     Kb+(1/R2),-(1/R2),-Kb,0,0,0; ...  % node 3 
+     -Kb,0,(1/R5)+Kb,-(1/R5),0,0; ... % node 6
+     0,0,0,0,-(1/R6)-(1/R7),(1/R7); ... % node 7
+     (1/R3),0,-(1/R3)-(1/R4)-(1/R5),(1/R5),(1/R7),-(1/R7); ... %supernode 5,8
+     0,0,1,0,(Kd/R6),-1] % additional equation: dependent voltage source
+     
+B = [-(Vs/R1);0;0;0;0;0]
+
+C = A\B 
