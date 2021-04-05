@@ -3,6 +3,6 @@ octave.log: t2.m
 
 clean:
 	@rm -f octave.log octave-workspace *.eps *~
-	@rm -f *.txt *~
+	@rm -f data*
 
 .PHONY: clean
