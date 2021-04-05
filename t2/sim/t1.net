@@ -1,0 +1,51 @@
+T1
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+* supply voltage
+Va 0 3 5.20102702949
+
+* resistors
+R1 0 1 1.04001336091k
+R2 2 1 2.04372276851k
+R3 1 4 3.11359737601k
+R4 4 3 4.17085404861k
+R5 4 5 3.02859283303k
+R6 3 6 2.070545767k
+R7 7 8 1.01835949725k
+
+*independent current sourceS
+Id 8 5 1.00460501759m
+
+* voltage-controlled current source
+Gib 5 2 (1,4) 7.19043597753m
+
+* control voltage source
+Vctrl 6 7 0
+
+* current-controlled voltage source
+H1Vc 4 8 Vctrl 8.06397385506k
+
+
+
+.control
+
+op
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+
+quit
+.endc
+
+.end

@@ -1,4 +1,7 @@
 Circuito T2
+
+.options savecurrents
+
 Vs 1 GND 5.20102702949
 R1 1 2 1.04001336091k
 R2 2 5 2.04372276851k
@@ -11,4 +14,5 @@ C 6 8 1.00460501759u
 GIb 6 3 (2,5) 7.19043597753m
 Vctrl T 7 0V
 H1Vd 5 8 Vctrl 8.06397385506k
+
 .end
