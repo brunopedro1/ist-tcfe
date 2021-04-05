@@ -1,0 +1,30 @@
+.options savecurrents
+
+.include ../sim/ngspicevalues.txt
+
+.control
+
+
+op
+
+
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+
+echo  "op2_TAB"
+print all
+echo  "op2_END"
+
+
+
+
+quit
+.endc
+
+.end
+
+
+

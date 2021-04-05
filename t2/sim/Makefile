@@ -9,6 +9,6 @@ ngspice.log: ../sim/t1.net
 	ngspice -b $< -o $@
 
 clean:
-	@rm -f ngspice.log *.tex *.pdf *.ps *~
+	@rm -f ngspice.log *.tex *.pdf *.ps *~ *.eps
 
 .PHONY: all clean
