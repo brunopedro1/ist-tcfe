@@ -24,7 +24,6 @@ C = values(9)
 null=0;
  
  
- 
 %R1 = 1.04001336091 
 %R2 = 2.04372276851 
 %R3 = 3.11359737601 
@@ -78,6 +77,8 @@ B1 = [Vs;-(Vs/R1);0;0;0;0;0]
 
 C1 = A1\B1
 
+
+
 V1 = C1(1,1)
 V2 = C1(2,1)
 V3 = C1(3,1)
@@ -86,7 +87,6 @@ V6 = C1(5,1)
 V7 = C1(6,1)
 V8 = C1(7,1)
 
-
 IR1 = (V1 - V2)*(1/R1)
 IR2 = (V2 - V3)*(1/R2)
 IR3 = (V5 - V2)*(1/R3)
@@ -94,6 +94,23 @@ IR4 = V5*(1/R4)
 IR5 = (V6 - V5)*(1/R5)
 IR6 = -V7*(1/R6)
 IR7 = (V7 - V8)*(1/R7)
+
+%diary "../doc/nodal_tab.tex"
+%diary on
+
+%printf('v(1) = %.11f\n', V1);
+%printf('v(2) = %.11f\n', V2);
+%printf('v(3) = %.11f\n', V3);
+%printf('v(5) = %.11f\n', V5);
+%printf('v(6) = %.11f\n', V6);
+%printf('v(7) = %.11f\n', V7);
+%printf('v(8) = %.11f\n', V8);
+
+%diary off
+
+printf('op_TAB_nodal1\n');
+printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n$V_8$ = %f\n', V1, V2, V3, V5, V6, V7, V8);
+printf('op_END_nodal1\n');
 
 
 fp=fopen('../doc/ngspice_t21.tex',"w");
@@ -195,13 +212,13 @@ t=0:0.000001:0.020;
 
 v_6n = Vx*exp(-(t/abs(tau)));
 
-figure();
+hf = figure();
 plot(t*10^3, v_6n, "r")
 xlabel ("time [ms]");
 ylabel ("v_6_n [V]");
 grid on;
 legend("v_6_n(t)");
-
+print (hf, "natural_tab.eps", "-depsc");
 
 %-------------------------------------------------------------------------------
 % 4) Forced solution, v_6f(t)

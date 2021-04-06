@@ -1,3 +1,6 @@
+
+* NGSPICE simulation script
+
 .options savecurrents
 
 .include ../sim/ngspicevalues.txt
@@ -14,9 +17,9 @@ echo  "Operating point"
 echo "********************************************"
 
 
-echo  "op2_TAB"
+echo  "op_TAB"
 print all
-echo  "op2_END"
+echo  "op_END"
 
 
 
