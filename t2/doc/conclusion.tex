@@ -1,15 +1,27 @@
 \newpage
+\section{Comparison}
+\label{sec:comparison}
+\par
+We will now compare the results obtained in the theoretical analysis and the simulation analysis.\par
+
+
+First, we obtained the values of both the voltages and currents of the circuit for t$<$0 using, the nodal method, in the theoretical analysis, and using the command ".op", Operating Analysis in the Ngspice engine in the simulation analysis, which gives us the voltages and currents of the circuit. The results obtained are extremely similar, which makes us believe the Ngspice engine uses for its calculations the same method used theoretical, the node method. The error obtained is minimal, with the first differences in the values appearing in the 4th/5th decimal number, and only by a unite, which gives us a error inferior to 0,01\%.
+\par
+We then analysed the circuit for t = 0, so with $v_s$ = 0, and with $V_x$ = $V_6$ - $V_8$, this voltage is replacing the capacitor so we can obtain $R_{eq}$, which is achieved with calculating $I_x$. Once again, given the similarity of the process to obtain the results with the one in the first section, the differences between the theoretical and simulation analysis are, once again, minimal and with errors inferior to 0,01\%.
+\par
+Thirdly, we were asked to acquire the natural solution of $V_6$, $V_{6n}$(t). Again, the graphics obtained by both type of analyses made are identical. The same happens with the forced solution $V_{6f}$(t) and the total solutions for both $V_6$(t) and $V_s$(t), asked in the next topics. In the theoretical analysis we used again analytic methods to solve the problem, while one the Ngspice engine, we used the Transient Analysis command. Given the similarity, it's once again safe to assume that the Ngspice uses in same way the same mathematical expressions and methods used theoretically,
+\par
+Finally we did a frequency analysis, in which we studied how $V_6$(f), $V_s$(f) and $V_c$(f) vary with the frequency, again this analysis was made both using Octave and Ngspice and the graphics obtained for both the magnitude and the phase of the voltages is identical, with minimal differences, if any.
+\par
+
+
+
+
+
+\newpage
 \section{Conclusion}
 \label{sec:conclusion}
-
-In this laboratory assignment the objective of analysing an RC circuit has been
-achieved. Static, time and frequency analyses have been performed both
-theoretically using the Octave maths tool and by circuit simulation using the
-Ngspice tool. The simulation results matched the theoretical results
-precisely. The reason for this perfect match is the fact that this is a
-straightforward circuit containing only linear components, so the theoretical
-and simulation models cannot differ. For more complex components, the
-theoretical and simulation models could differ but this is not the case in this
-work.
-
+Given the comparison made previously and the results obtained along the work, we can safely say that the objectives for this laboratory assignment were successfully achieved. In this assignment we were able to analyse and study a circuit containing multiple resistors, independent and dependent sources and a capacitor, that varies with time.\par
+Different types of analysis were effectuated, time, static and frequency analyses, both using the Octave and Ngspice engines. And the results obtained are within the expected and the similarities between the different types of analyses are satisfactory, but also expected given the nature of the circuit and its components, which were all linear, besides the capacitor, and all straightforward, which does not give many room for differences between the analyses.\par
+Given all this the objectives for this laboratory assignment were all achieved.
 

@@ -26,14 +26,14 @@ echo "********************************************"
 
 ac dec 1000 0.1 1MEG
 
-hardcopy acm.ps db(v(6)) db(v(6)-v(8)) db(v(1))
+hardcopy acm.ps db(v(6)) db(v(6)-v(8)) db(v(1)) ylabel 'magnitude (dB)'
 echo acm_FIG
 
 Let phase_v(6) = 180/PI * ph(v(6))
 Let phase_v(1) = 180/PI * ph(v(1))
 Let phase_v(c) = 180/PI * ph(v(6)-v(8))
 
-hardcopy phase.ps phase_v(6) phase_v(1) phase_v(c)
+hardcopy phase.ps phase_v(6) phase_v(1) phase_v(c) ylabel 'phase (degrees)'
 echo phase_FIG
 
 quit

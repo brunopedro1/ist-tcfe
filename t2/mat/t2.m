@@ -239,6 +239,7 @@ xlabel ("time [ms]");
 ylabel ("V [V]");
 grid on;
 legend("v_6_n(t)");
+title("Natural Solution for V_6(t)");
 print (hf, "natural_tab.eps", "-depsc");
 
 %-------------------------------------------------------------------------------
@@ -313,6 +314,7 @@ xlabel ("time [ms]");
 ylabel ("v_6_f [V]");
 grid on;
 legend("v_6_f(t)");
+title("Forced Solution for V_6(t)");
 print (hf2, "force_tab.eps", "-depsc");
 
 
@@ -354,6 +356,7 @@ xlabel ("time [ms]");
 ylabel ("voltage [V]");
 grid on;
 legend("v_6(t)", "v_s(t)");
+title("Total Solution for V_6(t) and V_s(t)");
 print (hf3, "total_tab.eps", "-depsc");
 
 %-------------------------------------------------------------------------------
