@@ -87,6 +87,8 @@ V6 = C1(5,1)
 V7 = C1(6,1)
 V8 = C1(7,1)
 
+Ib = Kb*(V2-V5)
+
 IR1 = (V1 - V2)*(1/R1)
 IR2 = (V2 - V3)*(1/R2)
 IR3 = (V5 - V2)*(1/R3)
@@ -109,7 +111,7 @@ IR7 = (V7 - V8)*(1/R7)
 %diary off
 
 printf('op_TAB_nodal1\n');
-printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n$V_8$ = %f\n', V1, V2, V3, V5, V6, V7, V8);
+printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n$V_8$ = %f\n$I_b$ = %f\n$R_1[i]$ = %f\n$R_2[i]$ = %f\n$R_3[i]$ = %f\n$R_4[i]$ = %f\n$R_5[i]$ = %f\n$R_6[i]$ = %f\n$R_7[i]$ = %f\n', V1, V2, V3, V5, V6, V7, V8, Ib, IR1,IR2,IR3,IR4,IR5,IR6,IR7);
 printf('op_END_nodal1\n');
 
 
@@ -152,8 +154,6 @@ fprintf(fp3, "Gb 6 3 (2,5) %f\n",values(10)* (10^-3));
 fclose(fp3);
 
 
-
-
 Vs_2 = 0
 V6 = C1(5,1)
 V8 = C1(7,1)
@@ -181,12 +181,33 @@ B2 = [Vs_2;-(Vs_2/R1);0;0;0;0;0;Vx]
      
 C2 = A2\B2
 
+V1_2 = C2(1,1)
+V2_2 = C2(2,1)
+V3_2 = C2(3,1)
+V5_2 = C2(4,1)
+V6_2 = C2(5,1)
+V7_2 = C2(6,1)
+V8_2 = C2(7,1)
+
 Ix = C2(8,1)
+
+Ib = Kb*(V2_2-V5_2)
+
+IR1_2 = (V1_2 -V2_2)/R1
+IR2_2 = (V3_2 -V2_2)/R2
+IR3_2 = (V2_2 -V5_2)/R3
+IR4_2 = V5_2/R4
+IR5_2 = (V6_2 -V5_2)/R5
+IR6_2 = -V7_2/R6
+IR7_2 = (V7_2 -V8_2)/R7
 
 Req = (Vx/Ix) % Equivalent resistance
 
 tau = (Req*10^3)*(C*10^-6) % Time constant
 
+printf('op_TAB_nodal2\n');
+printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n$V_8$ = %f\n$I_b$ = %f\n$R_1[i]$ = %f\n$R_2[i]$ = %f\n$R_3[i]$ = %f\n$R_4[i]$ = %f\n$R_5[i]$ = %f\n$R_6[i]$ = %f\n$R_7[i]$ = %f\n$I_x$ = %f\n$R_{eq}$ = %f\n$tau$ = %f\n', V1_2, V2_2, V3_2, V5_2, V6_2, V7_2, V8_2, Ib, IR1_2,IR2_2,IR3_2,IR4_2,IR5_2,IR6_2,IR7_2,Ix, Req, tau);
+printf('op_END_nodal2\n');
 
 %-------------------------------------------------------------------------------
 % 3) Natural solution, v_6n(t)
@@ -215,7 +236,7 @@ v_6n = Vx*exp(-(t/abs(tau)));
 hf = figure();
 plot(t*10^3, v_6n, "r")
 xlabel ("time [ms]");
-ylabel ("v_6_n [V]");
+ylabel ("V [V]");
 grid on;
 legend("v_6_n(t)");
 print (hf, "natural_tab.eps", "-depsc");
@@ -257,21 +278,42 @@ V6_f = C4(5,1)
 V7_f = C4(6,1)
 V8_f = C4(7,1)
 
-mag_v6 = abs(V6_f)
-ph_v6 = angle(V6_f)
+magv1 = abs(V1_f)
+magv2 = abs(V2_f)
+magv3 = abs(V3_f)
+magv5 = abs(V5_f)
+magv6 = abs(V6_f)
+magv7 = abs(V7_f)
+magv8 = abs(V8_f)
+
+printf('op_TAB_nodal4\n');
+printf('$V_1$ = %f\n$V_2$ = %f\n$V_3$ = %f\n$V_5$ = %f\n$V_6$ = %f\n$V_7$ = %f\n$V_8$ = %f\n', magv1, magv2, magv3, magv5, magv6, magv7, magv8);
+printf('op_END_nodal4\n');
+
+phv1 = angle(V1_f)
+phv2 = angle(V2_f)
+phv3 = angle(V3_f)
+phv5 = angle(V5_f)
+phv6 = angle(V6_f)
+phv7 = angle(V7_f)
+phv8 = angle(V8_f)
+
+printf('op_TAB_nodal4ph\n');
+printf('$ \\phi_{V_1}$ = %f\n$\\phi_{V_2}$ = %f\n$\\phi_{V_3}$ = %f\n$\\phi_{V_5}$ = %f\n$\\phi_{V_6}$ = %f\n$\\phi_{V_7}$ = %f\n$\\phi_{V_8}$ = %f\n', phv1, phv2, phv3, phv5, phv6, phv7, phv8);
+printf('op_END_nodal4ph\n');
 
 t=0:0.000001:0.020;
 
-v_6f(t>=0) = mag_v6*cos(w*t(t>=0)-ph_v6);
+v_6f(t>=0) = magv6*cos(w*t(t>=0)-phv6);
 %v_6f(t>=0) = abs(V6_f)*sin(2*pi*f*t(t>=0));
 
-figure();
+hf2 = figure();
 plot(t*10^3, v_6f, 'b')
 xlabel ("time [ms]");
 ylabel ("v_6_f [V]");
 grid on;
 legend("v_6_f(t)");
-
+print (hf2, "force_tab.eps", "-depsc");
 
 
 fp5 = fopen('../sim/ngspice_t24.txt',"w");
@@ -297,7 +339,7 @@ t=(-0.005:0.000001:0.020);
 
 v_6n(t>=0) = Vx*exp(-(t(t>=0)/abs(tau)));
 
-v_6f(t>=0) = mag_v6*cos(w*t(t>=0)-ph_v6);
+v_6f(t>=0) = magv6*cos(w*t(t>=0)-phv6);
 
 v_6(t>=0) = v_6n(t>=0) + v_6f(t>=0);
 v_6(t<0) = V6;
@@ -306,13 +348,13 @@ v_s(t>=0) = sin(2*pi*f*t(t>=0));
 v_s(t<0) = Vs;
 
 
-figure();
+hf3 = figure();
 plot(t*1000, v_6, t*1000, v_s)
 xlabel ("time [ms]");
 ylabel ("voltage [V]");
 grid on;
 legend("v_6(t)", "v_s(t)");
-
+print (hf3, "total_tab.eps", "-depsc");
 
 %-------------------------------------------------------------------------------
 % 6) Frequency Response

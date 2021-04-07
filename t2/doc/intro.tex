@@ -1,3 +1,4 @@
+\newpage
 \section{Introduction}
 \label{sec:introduction}
 
@@ -14,9 +15,14 @@ The sinusoidal voltage source follws the equation:
 	v_s( t )  = V_s u( -t ) + sin( 2 \pi f t ) u( t ) 
 	\label{eq:vs}
 \end{equation}
+
 where 
 
-
+\begin{equation}
+    u(t)=  \begin{cases}
+    0 & \mbox{if } t<0 \\ 1 &\mbox{if } t\geq 0
+    \end{cases}
+\end{equation}
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
 presented. In Section~\ref{sec:simulation}, the circuit is analysed by
@@ -25,7 +31,7 @@ Section~\ref{sec:analysis}. The conclusions of this study are outlined in
 Section~\ref{sec:conclusion}.
 
 \begin{figure}[h] \centering
-\includegraphics[width=0.9\linewidth]{t2.pdf}
+\includegraphics[width=0.8\linewidth]{t2.pdf}
 \caption{Voltage driven serial RC circuit.}
 \label{fig:t2}
 \end{figure}

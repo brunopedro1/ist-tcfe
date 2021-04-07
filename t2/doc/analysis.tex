@@ -1,34 +1,523 @@
+\newpage
 \epstopdfsetup{outdir=./}
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:t2} is analysed
-theoretically, in terms of its time and frequency responses.
 
-ALTERAR TUDO
+In this section we will analyse the circuit shown in Figure~\ref{fig:t2} theoretically using tools like the Octave and Python, given that the last gives us the values needed for the analysis of the circuit, as seen in the Table \ref{tab:values}.
 
-  
-\begin{table}[h]
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Name} & \textbf{Values} \\ \hline
+R1 & 1.04001336091 kOhm \\ \hline
+R2 & 2.04372276851 kOhm \\ \hline
+R3 & 3.11359737601 kOhm \\ \hline
+R4 & 4.17085404861 kOhm \\ \hline
+R5 & 3.02859283303 kOhm \\ \hline
+R6 & 2.070545767 kOhm   \\ \hline
+R7 & 1.01835949725 kOhm \\ \hline
+Vs & 5.20102702949 V    \\ \hline
+C  & 1.00460501759 uF   \\ \hline
+Kb & 7.19043597753 mA   \\ \hline
+Kd & 8.06397385506 kOhm \\ \hline
+\end{tabular}
+\caption{Values given by the Python script using the number 95803 as input.}
+\label{tab:values}
+\end{table}
+
+\subsection{Nodal Method for $t<0$}
+\label{subsec:nodal1}
+\par
+In the first point the values of the voltages and currents in all branches of the cicruit for t$<$0 are calculated using the nodal method and using the values given by the Python script.\par
+Since we are working in $t<0$,  $u(t) = 0$ and $u(-t) = 1$ and $v(s) = V_s$
+
+The equations used to obtain the various results are:
+
+\begin{itemize}
+    \item Node 1:
+\end{itemize}
+\begin{equation}
+    V_{1} = V_{s}
+\end{equation}
+
+\begin{itemize}
+    \item Node 2:
+\end{itemize}
+\begin{equation}
+    V_{2}(-\frac{1}{R_{1}}-\frac{1}{R_{2}}-\frac{1}{R_{3}})+V_{3}\frac{1}{R_{2}}+V_{5}\frac{1}{R_{3}} = -\frac{V_{s}}{R_{1}}
+\end{equation}
+
+\begin{itemize}
+    \item Node 3:
+\end{itemize}
+\begin{equation}
+    V_{2}(K_{b}+\frac{1}{R_{2}})+V_{3}(-\frac{1}{R_{2}})+V_{5}(-K_{b}) = 0
+\end{equation}
+
+\begin{itemize}
+    \item Node 6:
+\end{itemize}
+\begin{equation}
+    V_{2}(-K_{b})+V_{5}(\frac{1}{R_{5}}+K_{b})+V_{6}(-\frac{1}{R_{5}}) = 0
+\end{equation}
+
+\begin{itemize}
+    \item Node 7:
+\end{itemize}
+\begin{equation}
+    V_{7}(-\frac{1}{R_{6}}-\frac{1}{R_{7}})+V_{8}\frac{1}{R_{7}} = 0
+\end{equation}
+
+\begin{itemize}
+    \item Supernode 5 and 8:
+\end{itemize}
+\begin{equation}
+    V_{2}(-\frac{1}{R_{3}})+V_{5}(-\frac{1}{R_{3}}-\frac{1}{R_{4}}-\frac{1}{R_{5}})+ V_{6}\frac{1}{R_{5}}+V_{7}\frac{1}{R_{7}}+V_{8}(-\frac{1}{R_{7}})= 0
+\end{equation}
+
+\begin{itemize}
+    \item Additional equation from the dependent voltage source:
+\end{itemize}
+\begin{equation}
+    V_{5}+V_{7}\frac{K_{d}}{R_{6}}-V_{8}=0
+\end{equation}
+
+\par
+The system that uses the previous equations and that solves the problem is the following:
+
+\begin{equation}
+\begin{bmatrix}
+1 & 0& 0& 0& 0& 0& 0 \\ 
+0 & -\frac{1}{R_{1}}-\frac{1}{R_{2}}-\frac{1}{R_{3}} & \frac{1}{R_{2}} & \frac{1}{R_{3}} & 0&  0& 0\\ 
+0 & K_{b}+\frac{1}{R_{2}} & -\frac{1}{R_{2}} & -K_{b} & 0 &  0& 0\\ 
+0 & -K_{b} & 0 & \frac{1}{R_{5}}+K_{b} & -\frac{1}{R_{5}} & 0 &0 \\ 
+0 & 0 &0  & 0 &0  & -\frac{1}{R_{6}}-\frac{1}{R_{7}} & \frac{1}{R_{7}} \\
+0 & -\frac{1}{R_{3}} &0  & -\frac{1}{R_{3}}-\frac{1}{R_{4}}-\frac{1}{R_{5}} & \frac{1}{R_{5}} & \frac{1}{R_{7}} & -\frac{1}{R_{7}}\\ 
+0 & 0 & 0 & 1 & 0 & \frac{K_{d}}{R_{6}} & -1
+\end{bmatrix}
+\begin{bmatrix}
+V_{1}\\ 
+V_{2}\\ 
+V_{3}\\ 
+V_{5}\\ 
+V_{6}\\ 
+V_{7}\\ 
+V_{8}
+\end{bmatrix}
+=
+\begin{bmatrix}
+V_{s}\\ 
+-\frac{V_{s}}{R_{1}}\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\ 
+0
+\end{bmatrix}
+\end{equation}
+
+Using Octave to solve the matrix system, the results obtained are shown in Table \ref{tab:nodal1}:
+
+\begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [A]} \\ \hline
+    {\bf Name} & {\bf Value [V or mA]} \\ \hline
     \input{../mat/op_TAB_nodal1}
   \end{tabular}
-  \caption{Nodal analysis 1}
+  \caption{Results of theoretical operating point analysis for t$<$0. A variable that starts with $V$ is of type voltage and is expressed in Volt (V). A variable that has $[i]$ is of type current and is expressed in miliampere (mA).}
   \label{tab:nodal1}
 \end{table}
 
 
-\begin{figure}[h] \centering
-  \includegraphics[width=0.9\linewidth]{natural_tab.eps}
-  \caption{Natural response of $V_6$ as a function os time in the interval from [0,20] ms}
-  \label{fig:natural}
+After calculating the nodes voltages we are able to obtain the currents flowing through each component using the following equations:
+
+\begin{equation}
+I_b = K_b(V_2 - V_5)
+  \label{eq:Ib}
+\end{equation}
+
+\begin{equation}
+R_1[i] = \frac{(V_1 - V_2)}{R_1}
+  \label{eq: iR1}
+\end{equation}
+
+\begin{equation}
+R_2[i] = \frac{(V_2 - V_3)}{R_2}
+  \label{eq: iR2}
+\end{equation}
+
+\begin{equation}
+R_3[i] = \frac{(V_5 - V_2)}{R_3}
+  \label{eq: iR3}
+\end{equation}
+
+\begin{equation}
+R_4[i] = \frac{V_5}{R_4}
+  \label{eq: iR4}
+\end{equation}
+
+\begin{equation}
+R_5[i] = \frac{(V_6 - V_5)}{R_5}
+  \label{eq: iR5}
+\end{equation}
+
+\begin{equation}
+R_6[i] = \frac{-V_7}{R_6}
+  \label{eq: iR6}
+\end{equation}
+
+\begin{equation}
+R_7[i] = \frac{V_7 - V_8}{R_7}
+  \label{eq: iR7}
+\end{equation}
+
+The results of these equations can be seen in Table \ref{tab:nodal1}.
+
+\subsection{Equivalent resistance and time constant}
+
+In this section we analyse the circuit for t = 0, so with $v_s$ = 0 and $V_1$ = 0. To obtain this, the capacitor in the circuit is replaced with:
+
+\begin{equation}
+  V_x = V_6(t<0) - V_8(t<0),
+  \label{eq: Vx}
+\end{equation}
+
+where $V_6$($t<0$) and $V_8$($t<0$) have the values obtain previously.
+
+With dependent sources in a circuit like the one analysed, we can't turn off all sources to compute the equivalent resistance as seen from the capacitor terminals. So we need to obtain the equivalent current, flowing through the capacitor, $I_x$, and the equivalent voltage, $V_x$, which we know already from equation above.
+
+To discover the values of the voltages in the nodes for $t = 0$, we compute a similar matrix from the previous section, with the only change being that  $V_1$(t=0) is now 0. The equations to solve the problem are, with the voltages values being for t = 0:
+
+\begin{itemize}
+    \item Node 1:
+\end{itemize}
+\begin{equation}
+    V_{1} = V_{s}
+\end{equation}
+
+\begin{itemize}
+    \item Node 2:
+\end{itemize}
+\begin{equation}
+    V_{2}(-\frac{1}{R_{1}}-\frac{1}{R_{2}}-\frac{1}{R_{3}})+V_{3}\frac{1}{R_{2}}+V_{5}\frac{1}{R_{3}} = -\frac{V_{s}}{R_{1}}
+\end{equation}
+
+\begin{itemize}
+    \item Node 3:
+\end{itemize}
+\begin{equation}
+    V_{2}(K_{b}+\frac{1}{R_{2}})+V_{3}(-\frac{1}{R_{2}})+V_{5}(-K_{b}) = 0
+\end{equation}
+
+\begin{itemize}
+    \item Node 6:
+\end{itemize}
+\begin{equation}
+    V_2(-K_b)+V_5(\frac{1}{R_5} + K_b)-V_6\frac{1}{R_5} - I_x = 0
+\end{equation}
+
+\begin{itemize}
+    \item Node 7:
+\end{itemize}
+\begin{equation}
+    V_{7}(-\frac{1}{R_{6}}-\frac{1}{R_{7}})+V_{8}\frac{1}{R_{7}} = 0
+\end{equation}
+
+\begin{itemize}
+    \item Supernode 5 and 8:
+\end{itemize}
+\begin{equation}
+    V_{2}(\frac{1}{R_{3}})+V_{5}(-\frac{1}{R_{3}}-\frac{1}{R_{4}}-\frac{1}{R_{5}})+ V_{6}\frac{1}{R_{5}}+V_{7}\frac{1}{R_{7}}+V_{8}(-\frac{1}{R_{7}}) + I_x= 0
+\end{equation}
+
+\begin{itemize}
+    \item Additional equation from the dependent voltage source:
+\end{itemize}
+\begin{equation}
+    V_{5}+V_{7}\frac{K_{d}}{R_{6}}-V_{8}=0
+\end{equation}
+
+The new equation, that relates voltages of nodes 6 and 8, which are now connected by a voltage source $V_x$ is:
+
+\begin{equation}
+V_6(t=0) - V_8(t=0) = V_x
+  \label{eq:V68}
+\end{equation}
+
+These equations are translated through the following system of matrix to obtain the node voltages and the current $I_x$:
+
+\begin{equation}
+\begin{bmatrix}
+1 & 0& 0& 0& 0& 0& 0& 0 \\ 
+0 & -\frac{1}{R_{1}}-\frac{1}{R_{2}}-\frac{1}{R_{3}} & \frac{1}{R_{2}} & \frac{1}{R_{3}} & 0&  0& 0& 0\\ 
+0 & K_{b}+\frac{1}{R_{2}} & -\frac{1}{R_{2}} & -K_{b} & 0 &  0& 0& 0\\ 
+0 & -K_{b} & 0 & \frac{1}{R_{5}}+K_{b} & -\frac{1}{R_{5}} & 0& 0& -1 \\ 
+0 & 0 &0  & 0 &0  & -\frac{1}{R_{6}}-\frac{1}{R_{7}} & \frac{1}{R_{7}} & 0 \\
+0 & \frac{1}{R_{3}} &0  & -\frac{1}{R_{3}}-\frac{1}{R_{4}}-\frac{1}{R_{5}} & \frac{1}{R_{5}} & \frac{1}{R_{7}} & -\frac{1}{R_{7}} & 1\\ 
+0 & 0 & 0 & 1 & 0 & \frac{K_{d}}{R_{6}} & -1 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 & -1 & 0
+\end{bmatrix}
+\begin{bmatrix}
+V_{1}\\ 
+V_{2}\\ 
+V_{3}\\ 
+V_{5}\\ 
+V_{6}\\ 
+V_{7}\\ 
+V_{8}\\
+I_{x}
+\end{bmatrix}
+=
+\begin{bmatrix}
+V_{s}\\ 
+-\frac{V_{s}}{R_{1}}\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\
+Vx
+\end{bmatrix}
+\end{equation}
+
+
+The solution of this system was obtained using Octave and the results are in Table \ref{tab:nodal2}:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V or mA or kOhm]} \\ \hline
+    \input{../mat/op_TAB_nodal2}
+  \end{tabular}
+  \caption{Results of theoretical operating point analysis for $t=0$. A variable that starts with $V$ is of type voltage and is expressed in Volt (V). $I_b$, $I_x$ and the variables that have $[i]$ are of type current and are expressed in miliampere (mA). $R_{eq}$ is of type resistance and is expressed in kOhm. }
+  \label{tab:nodal2}
+\end{table}
+
+And with these voltage values and the following equations we can compute the values to the currents in the various components:
+
+\begin{equation}
+I_b = K_b(V_2 - V_5)
+\end{equation}
+
+\begin{equation}
+R_1[i] = \frac{V_1 - V_2}{R_1}
+\end{equation}
+
+\begin{equation}
+R_2[i] = \frac{(V_3 - V_2)}{R_2}
+\end{equation}
+
+\begin{equation}
+R_3[i] = \frac{(V_2 - V_5)}{R_3}
+\end{equation}
+
+\begin{equation}
+R_4[i] = \frac{V_5}{R_4}
+\end{equation}
+
+\begin{equation}
+R_5[i] = \frac{(V_5 - V_6)}{R_5}
+\end{equation}
+
+\begin{equation}
+R_6[i] = \frac{-V_7}{R_6}
+\end{equation}
+
+\begin{equation}
+R_7[i] = \frac{V_7 - V_8}{R_7}
+\end{equation}
+
+Finally we are able to compute the results for $R_{eq}$ (equivalent resistance) and $\tau$ (time constant) using the following equations:
+
+\begin{equation}
+R_{eq} = \frac{V_x}{I_x}
+\end{equation}
+
+\begin{equation}
+\tau = R_{eq}C.
+\end{equation}
+
+The values obtained using these equations are also shown in Table \ref{tab:nodal2}.
+
+\subsection{Natural solution for $V_{6}(t)$}
+
+In this section, we are given the task to find and compute the natural solution for $V_{6}(t)$: $V_{6n}(t)$
+
+For that we use the following equation:
+
+\begin{equation}
+    v_{6n}(t) = V_{x}\cdot e^{-\frac{t}{\tau}}
+\end{equation}
+
+Where $\tau$ is the time constant previously determined and $V_x$ is the constant of the natural solution formula obtained through the boundary conditions.
+
+Plotting this equation we obtain the graphic of the Figure \ref{fig:naturalresponse}.
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{natural_tab.eps}
+  \caption{Natural response for $V_6$ as a function of time in [0,20] ms}
+  \label{fig:naturalresponse}
+\end{figure} 
+
+\subsection{Forced solution for $V_{6}(t)$}
+\par
+Here we are asked to compute and find the forced solution for $V_{6}(t)$: $V_{6f}(t)$
+
+For this, we have to compute first the complex amplitudes of the voltages in each node, using the nodal method, but replacing the capacitor with its impedance, $Z_C$. Also, a phasor voltage source $\tilde{V}_S = j$ with magnitude $V_S = 1$ was used.
+
+Hence, the only equations that are different from those written in subsection \ref{subsec:nodal1} are the ones referring to node 6 and supernode 5,8. 
+
+In the capacitor, we have:
+
+\begin{equation}
+    Z_C = \frac{1}{jwc},
+\end{equation}
+
+where $w = 2 \pi f$ and $f$ is the given frequency, $f = 1000Hz$. And: 
+
+\begin{equation}
+    V_C = I_C Z_C.
+\end{equation}
+
+Because of these changes, the equation of node 6 is now:
+
+\begin{equation}
+   \frac{\tilde{V}_5 - \tilde{V}_6}{R_5} - K_b(\tilde{V}_2 - \tilde{V}_5) - \frac{\tilde{V}_6 - \tilde{V}_8}{Z_c} = 0
+\end{equation}
+
+and the equation of supernode 5,8 is:
+
+\begin{equation}
+   \frac{\tilde{V}_2 - \tilde{V}_5}{R_3} + \frac{\tilde{V}_7 - \tilde{V}_8}{R_7} + \frac{\tilde{V}_6 - \tilde{V}_8}{Z_C} - \frac{\tilde{V}_5}{R_4} - \frac{\tilde{V}_5 - \tilde{V}_6}{R_5} = 0
+\end{equation}
+
+With these equations and the previously obtained in subsection \ref{subsec:nodal1} we can build the following system of matix:
+
+
+\begin{equation}
+\begin{bmatrix}
+1 & 0& 0& 0& 0& 0& 0 \\ 
+0 & -\frac{1}{R_{1}}-\frac{1}{R_{2}}-\frac{1}{R_{3}} & \frac{1}{R_{2}} & \frac{1}{R_{3}} & 0&  0& 0\\ 
+0 & K_{b}+\frac{1}{R_{2}} & -\frac{1}{R_{2}} & -K_{b} & 0 &  0& 0\\ 
+0 & -K_{b} & 0 & \frac{1}{R_{5}}+K_{b} & -\frac{1}{R_{5}}-\frac{1}{Z_{C}} & 0 &\frac{1}{Z_{C}} \\ 
+0 & 0 &0  & 0 &0  & -\frac{1}{R_{6}}-\frac{1}{R_{7}} & \frac{1}{R_{7}} \\
+0 & -\frac{1}{R_{3}} &0  & -\frac{1}{R_{3}}-\frac{1}{R_{4}}-\frac{1}{R_{5}} & \frac{1}{R_{5}}+\frac{1}{Z_{C}} & \frac{1}{R_{7}} & -\frac{1}{R_{7}}-\frac{1}{Z_{C}}\\ 
+0 & 0 & 0 & 1 & 0 & \frac{K_{d}}{R_{6}} & -1
+\end{bmatrix}
+\begin{bmatrix}
+\tilde{V}_{1}\\ 
+\tilde{V}_{2}\\ 
+\tilde{V}_{3}\\ 
+\tilde{V}_{5}\\ 
+\tilde{V}_{6}\\ 
+\tilde{V}_{7}\\ 
+\tilde{V}_{8}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\tilde{V}_{s}\\ 
+-\frac{\tilde{V}_{s}}{R_{1}}\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\ 
+0
+\end{bmatrix}
+\end{equation}
+ 
+Using Octave we obtain the phasor voltages in every node. The Table \ref{tab:nodal4} shows the magnitude of the node phasors and the Table \ref{tab:nodal4ph} shows the phase of the node phasors. 
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/op_TAB_nodal4}
+  \end{tabular}
+  \caption{Magnitude of the node phasors.}
+  \label{tab:nodal4}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [Radians]} \\ \hline
+    \input{../mat/op_TAB_nodal4ph}
+  \end{tabular}
+  \caption{Phase of the node phasors.}
+  \label{tab:nodal4ph}
+\end{table}
+
+And finnaly we can compute the forced solution $v_{6f}$ on the time interval [0, 20] ms using:
+\begin{equation}
+    V_{6f}(t) = V_6cos(wt-\phi_{V_6})
+\end{equation}
+
+and plotting this in octave we obtain the graphic of the Figure \ref{fig:forceresponse}.
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{force_tab.eps}
+  \caption{Force response for $V_6$ as a function of time in [0,20] ms}
+  \label{fig:forceresponse}
+\end{figure} 
+
+
+\subsection{Total solution $V_6(t)$}
+To acquire the total solution of $V_6(t)$ on [-5,20] ms we need to convert the phasors to real time functions for $f=1000Hz$, and superimpose the natural and forced solutions already determined.
+
+The equation used to obtain the total solution is:
+\begin{equation}
+    V_6(t) = V_{6f}(t) + V_{6n}(t).
+\end{equation}
+
+The graphic of the Figure \ref{fig:totalresponse} shows the plot of total solution for $V_6(t)$ along with the plot of $V_s(t)$ on the time interval[-5,20] ms.
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{total_tab.eps}
+  \caption{Total response for $V_6$ and $V_s$ as a function of time in [-5,20] ms}
+  \label{fig:totalresponse}
+\end{figure} 
+
+
+\subsection{Frequency response $v_c(f)$, $v_s(f)$ and $v_6(f)$}
+
+In this section we study how the phasor voltages $v_c$, $v_s$ and $v_6$ behave with the variation of the frequency. 
+
+The variation of the amplitude and the variation of the phase of $v_c(f)$, $v_s(f)$ and $v_6(f)$ with the frequency in a range from 0.1Hz (very low frequency) to 1MHz (very high frequency) can be seen in the graphics of the Figures \ref{fig:FrequencyResponseAmplitude} and \ref{fig:FrequencyResponsePhase},respectively. 
+
+Analysing this graphics we realize that the amplitude and phase of $v_s(f)$ keeps constant, this can be explained with the fact that they don't depend on the frequency as we can see through its equation:
+
+\begin{equation}
+    V_{s}(t) = V_s sin(2 \pi f t)
+\end{equation}
+
+
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{FrequencyResponseAmplitude.eps}
+  \caption{Amplitude response  of $v_c$, $v_s$ and $v_6$ for frequencies from 0.1Hz to 1MHz (logarithmic scale)}
+  \label{fig:FrequencyResponseAmplitude}
+\end{figure} 
+
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{FrequencyResponsePhase.eps}
+  \caption{Phase response of $v_c$, $v_s$ and $v_6$ for frequencies from 0.1Hz to 1MHz (logarithmic scale)}
+  \label{fig:FrequencyResponsePhase}
 \end{figure} 
 
 
 
-\section{Frequency response}
+
+
+
+
+
 
 
 
