@@ -488,13 +488,20 @@ The graphic of the Figure \ref{fig:totalresponse} shows the plot of total soluti
 
 In this section we study how the phasor voltages $v_c$, $v_s$ and $v_6$ behave with the variation of the frequency. 
 
-The variation of the amplitude and the variation of the phase of $v_c(f)$, $v_s(f)$ and $v_6(f)$ with the frequency in a range from 0.1Hz (very low frequency) to 1MHz (very high frequency) can be seen in the graphics of the Figures \ref{fig:FrequencyResponseAmplitude} and \ref{fig:FrequencyResponsePhase},respectively. 
+The variation of the amplitude and the variation of the phase of $v_c(f)$, $v_s(f)$ and $v_6(f)$ with the frequency in a range from 0.1Hz (very low frequency) to 1MHz (very high frequency) can be seen in the graphics of the Figures \ref{fig:FrequencyResponseAmplitude} and \ref{fig:FrequencyResponsePhase}, respectively. 
 
 Analysing this graphics we realize that the amplitude and phase of $v_s(f)$ keeps constant, this can be explained with the fact that they don't depend on the frequency as we can see through its equation:
 
 \begin{equation}
     V_{s}(t) = V_s sin(2 \pi f t)
 \end{equation}
+
+We can also verify that this circuit behaves as a low-Pass filter because, for lower frequencies, the capacitor voltage is almost the same as the input from the voltage source. But for higher frequencies, the amplitude of the capacitor voltage decreases, more precisely for frequencies greater than approximately 50Hz - cutoff frequency, given by the equation:
+
+\begin{equation}
+    f_{c}=\frac{1}{2 \pi \tau}
+\end{equation}
+
 
 
 \begin{figure}[H] \centering

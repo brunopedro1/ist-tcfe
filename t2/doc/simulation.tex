@@ -69,9 +69,8 @@ Once again, the graphic obtained in Octave is the same.
 
 \subsection{Frequency response in node 6}
 
-Finally, in step (5), it was asked to simulate the frequency response between 0.1 Hz and 1 MHz.In the following figures, the amplitude frequency response and the phase response were plotted. It is important to notice that the frequency logscale has its magnitude in dB units and the phase is presented in degrees.
+Finally, in step (5), it was asked to simulate the frequency response between 0.1 Hz and 1 MHz.In the following Figures \ref{fig:sim_acm} and \ref{fig:sim_phase}, the amplitude frequency response and the phase response were plotted. It is important to notice that the frequency logscale has its magnitude in dB units and the phase is presented in degrees.
 
-When the frequencies are low, the circuit can charge up until its voltage is almost the same as the input. The potential difference in the capacitor rises, then. However, when the frequencies are high, the capacitor has less time to charge, as the input changes direction faster, behaving almost like a short circuit. Because of this, the potential drop in the capacitor will be close to 0, and it will start to fall out of phase with the source, for frequencies greater than 50Hz, approximately. This frequency is called the cutoff frequency and is given by $fc=\frac{1}{2\cdot\pi\cdot\tau}$. This drop can be seen in graph \ref{fig:FrequencyResponseAmplitude}, starting at around 50Hz. The phase difference can also be seen in graph \ref{fig:FrequencyResponsePhase}.
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.8\linewidth]{acm.pdf}
