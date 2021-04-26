@@ -1,0 +1,29 @@
+
+* NGSPICE simulation script
+
+.options savecurrents
+
+.include ../sim/ngspicevalues.txt
+
+.control
+
+
+op
+
+
+echo "********************************************"
+echo  "Operating point"
+echo "********************************************"
+
+
+echo  "op_TAB"
+print all
+echo  "op_END"
+
+quit
+.endc
+
+.end
+
+
+
