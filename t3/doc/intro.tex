@@ -9,20 +9,8 @@ The circuit can be seen in Figure~\ref{fig:t2}.
 
 The nodes are designated with numbers as seen in the Figure~\ref{fig:t2} and the node voltages will be represented with their respective numbers (ex. $V_3$ represents the voltage in node number 3). The characteristic equations of the dependent sources can also be seen in the Figure~\ref{fig:t2}. 
 
-The sinusoidal voltage source follws the equation:
 
-\begin {equation}
-	v_s( t )  = V_s u( -t ) + sin( 2 \pi f t ) u( t ) 
-	\label{eq:vs}
-\end{equation}
 
-where 
-
-\begin{equation}
-    u(t)=  \begin{cases}
-    0 & \mbox{if } t<0 \\ 1 &\mbox{if } t\geq 0
-    \end{cases}
-\end{equation}
 
 In Section~\ref{sec:analysis}, a theoretical analysis of the circuit is
 presented. In Section~\ref{sec:simulation}, the circuit is analysed by
@@ -30,9 +18,22 @@ simulation, and the results are compared to the theoretical results obtained in
 Section~\ref{sec:analysis}. The conclusions of this study are outlined in
 Section~\ref{sec:conclusion}.
 
-\begin{figure}[h] \centering
-\includegraphics[width=0.8\linewidth]{t2.pdf}
-\caption{Voltage driven serial RC circuit.}
+\begin{figure}[H] \centering
+\includegraphics[width=1.0\linewidth]{t3_desenho_fixe.pdf}
+\vspace{-10cm}
+\caption{Circuit drawn to build the AC/DC Converter.}
 \label{fig:t2}
 \end{figure}
+
+\vspace{1.5cm}
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name [unit]} & {\bf Value} \\ \hline
+    \input{../mat/op_TAB}
+  \end{tabular}
+  \caption{Values considered to build the AC/DC converter circuit.}
+  \label{tab:values}
+\end{table}
 

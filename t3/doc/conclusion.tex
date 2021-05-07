@@ -7,58 +7,34 @@ We will now compare the results obtained in the theoretical analysis and the sim
 
 First, we obtained the values of both the voltages and currents of the circuit for t$<$0 using the nodal method in the theoretical analysis, and using the command ".op", Operating Analysis in the Ngspice engine in the simulation analysis, which gives us the voltages and currents of the circuit. The results obtained are extremely similar (Table \ref{tab:comp1}), which makes us believe the Ngspice engine uses for its calculations the same method used theoretical, the node method. The error obtained is minimal, with the first differences in the values appearing in the 4th/5th decimal number, and only by a unite, which gives us a error inferior to 0,01\%.
 
-\begin{table}[H]
-    \caption{Operating Point for $t<0$ comparison}
-    \begin{subtable}{.5\linewidth}
-    \centering
-      \caption{Table \ref{tab:nodal1} - theoretical analysis}
-      \begin{tabular}{|l|r|}
-       \hline    
-       {\bf Name} & {\bf Value [V or mA]} \\ \hline
-       \input{../mat/op_TAB_nodal1}
-      \end{tabular}
-      \label{tab:nodal1comp}
-    \end{subtable}%
-    \begin{subtable}{.5\linewidth}
-    \centering
-      \caption{Table \ref{tab:op_sim1} - simulation analysis}
-      \begin{tabular}{|l|r|}
-       \hline    
-      {\bf Name} & {\bf Value [A or V]} \\ \hline
-      \input{../sim/op_tab}
-      \end{tabular}
-      \label{tab:op_sim1comp}
-    \end{subtable} 
-    \label{tab:comp1}
-\end{table}
+%\begin{table}[H]
+%    \caption{Operating Point for $t<0$ comparison}
+%    \begin{subtable}{.5\linewidth}
+%    \centering
+%      \caption{Table \ref{tab:nodal1} - theoretical analysis}
+%      \begin{tabular}{|l|r|}
+%       \hline    
+%       {\bf Name} & {\bf Value [V or mA]} \\ \hline
+%       \input{../mat/op_TAB_nodal1}
+%      \end{tabular}
+%      \label{tab:nodal1comp}
+%    \end{subtable}%
+%    \begin{subtable}{.5\linewidth}
+%    \centering
+%      \caption{Table \ref{tab:op_sim1} - simulation analysis}
+%      \begin{tabular}{|l|r|}
+%       \hline    
+%      {\bf Name} & {\bf Value [A or V]} \\ \hline
+%      \input{../sim/op_tab}
+%      \end{tabular}
+%      \label{tab:op_sim1comp}
+%    \end{subtable} 
+%    \label{tab:comp1}
+%\end{table}
 
 
 We then analysed the circuit for t = 0, so with $v_s$ = 0, and with $V_x$ = $V_6$ - $V_8$, this voltage is replacing the capacitor so we can obtain $R_{eq}$, which is achieved with calculating $I_x$. Once again, given the similarity of the process to obtain the results with the one in the first section, the differences between the theoretical and simulation analysis are, once again, minimal and with errors inferior to 0,01\% (Table \ref{tab:comp2}).
 
-\begin{table}[H]
-    \caption{Operating Point for $t=0$ comparison}
-    \begin{subtable}{.5\linewidth}
-    \centering
-      \caption{Table \ref{tab:nodal2} - theoretical analysis}
-      \begin{tabular}{|l|r|}
-       \hline    
-       {\bf Name} & {\bf Value [V or mA]} \\ \hline
-       \input{../mat/op_TAB_nodal2}
-      \end{tabular}
-      \label{tab:nodal2comp}
-    \end{subtable}%
-    \begin{subtable}{.5\linewidth}
-    \centering
-      \caption{Table \ref{tab:op_sim2} - simulation analysis}
-      \begin{tabular}{|l|r|}
-       \hline    
-      {\bf Name} & {\bf Value [A or V]} \\ \hline
-      \input{../sim/op2_tab}
-      \end{tabular}
-      \label{tab:op_sim2comp}
-    \end{subtable} 
-    \label{tab:comp2}
-\end{table}
 
 \par
 Thirdly, we were asked to acquire the natural solution of $V_6$, $V_{6n}$(t). Again, the graphics obtained by both type of analyses made are identical. The same happens with the forced solution $V_{6f}$(t) and the total solutions for both $V_6$(t) and $V_s$(t), asked in the next topics. In the theoretical analysis we used again analytic methods to solve the problem, while one the Ngspice engine, we used the Transient Analysis command. Given the similarity, it's once again safe to assume that the Ngspice uses in same way the same mathematical expressions and methods used theoretically,
