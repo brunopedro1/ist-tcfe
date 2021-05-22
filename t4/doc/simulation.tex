@@ -1,0 +1,55 @@
+\newpage
+\epstopdfsetup{outdir=./}
+\section{Simulation Analysis}
+\label{sec:simulation}
+
+In this section, the circuit built (Figure \ref{fig:t3_circuit}) will be analyzed and simulated using NGSPICE. 
+
+Before simulate the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for n of the transformer, for the resistances and for the capacitor in order too obtain a decent merit value, while trying to get a good average and ripple values and a relatively low cost. That is how we ended up using a Full-Wave Rectifier instead of an Half-Wave Rectifier, a Voltage Regulator with 18 diodes and the values shown in Table \ref{tab:values}.
+
+Performing transient analysis for 10 periods (200ms) on NGSPICE to simulate the circuit, and using some functions, the results obtained for the avarage output voltage, ripple of the output voltage ($ripple(v_O)=max(v_O)-min(v_O))$, cost and merit figure, are shown in Table \ref{tab:valuessim} 
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Name} & \textbf{Values} \\ \hline
+		Vaverage & 1.200000e+01 V \\ \hline
+		Vmax & 1.200427e+01 V \\ \hline
+		Vmin & 1.199563e+01 V \\ \hline
+		Ripple & 8.640000e-03 V \\ \hline
+		Cost & 257.20000000 MU \\ \hline
+		Merit & 0.4499508024 \\ \hline
+	\end{tabular}
+	\caption{Results from simulation analysis.}
+	\label{tab:valuessim}
+\end{table}
+
+The graphic of the Figure \ref{fig:sim_envelope} shows the simulated output voltage at the Envelope Detector circuit.
+
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{v3.pdf}
+\caption{Output voltage at the Envelope Detector. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
+\label{fig:sim_envelope}
+\end{figure}
+
+The graphic of the Figure \ref{fig:sim_regulator} shows the simulated output voltage at the Voltage Regulator circuit.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{v4.pdf}
+\caption{Output voltage at the Voltage Regulator circuit. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
+\label{fig:sim_regulator}
+\end{figure}
+
+The graphic of the Figure \ref{fig:sim_vo-12} shows the deviation of the simulated output voltage at the Voltage Regulator from 12V.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.8\linewidth]{v4-12.pdf}
+\caption{Deviation of the output voltage at the Voltage Regulator from 12V. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
+\label{fig:sim_vo-12}
+\end{figure}
+
+
+
+

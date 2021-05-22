@@ -1,0 +1,54 @@
+\newpage
+\epstopdfsetup{outdir=./}
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section we will analyse the circuit shown in Figure~\ref{fig:t3_circuit} theoretically using Octave tools.\par
+The circuit chosen is the most suitable theoretical model we found that was able to most accurately and ideally predict the output of the Envelope Detector as well as the output of the Voltage Regulator.
+
+The tranformer with n:1 ration is represented in our circuit by a voltage source of 230/n [V], where n is the value considered in Table \ref{tab:values}. The output of the transformer will be the input of our Envelope detector circuit, which is made of a Full-Wave Rectifier with 4 diodes, a resistence ($R_{envelope}$) and a capacitor ($C_{envelope}$), which values are also in Table \ref{tab:values}. The Full-Wave Rectifier was used because it helps to reduce the ripple by reducing the period corresponding to the wave ripple. The output of the Envelope Detector will be the input of the Voltage Regulator. The voltage regulator is made up of 18 diodes and one resistance ($R_{regulator}$) shown in Table \ref{tab:values}. The resistance is in series with the 18 diodes
+
+The diodes used are the ideal+$V_{ON}$ diode model with $V_{ON} = 0.67$.
+
+The theoretical results of the avarage output voltage at the the Voltage Regulator circuit, i.e, the avarage output voltage of the AC/DC converter circuit, as well as the output voltage ripple, calculated cost, and merit figure are shown in Table \ref{tab:teo}:  
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name [unit]} & {\bf Value} \\ \hline
+    \input{../mat/op2_TAB}
+  \end{tabular}
+  \caption{Results from theoretical analysis.}
+  \label{tab:teo}
+\end{table}
+
+The graphic of the Figure \ref{fig:vO_env} shows the output voltage at the Envelope Detector circuit.
+ 
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{vO_env.eps}
+  \caption{Output voltage at the Envelope Detector.}
+  \label{fig:vO_env}
+\end{figure} 
+
+The graphic of the Figure \ref{fig:vO_reg} shows the output voltage at the Voltage Regulator circuit.
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{vO_reg.eps}
+  \caption{Output voltage at the Voltage Regulator circuit.}
+  \label{fig:vO_reg}
+\end{figure} 
+
+The graphic of the Figure \ref{fig:vO-12} shows the deviation of output voltage at the Voltage Regulator from 12V.
+
+\begin{figure}[H] \centering
+  \includegraphics[width=0.8\linewidth]{deviation.eps}
+  \caption{Deviation of output voltage at the Voltage Regulator from 12V.}
+  \label{fig:vO-12}
+\end{figure} 
+
+
+
+
+
+

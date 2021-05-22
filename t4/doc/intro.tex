@@ -1,0 +1,50 @@
+\newpage
+\section{Introduction}
+\label{sec:introduction}
+
+% state the learning objective 
+The objective of this laboratory assignment was to create an AC/DC converter, so a circuit that would transform an input AC voltage of amplitude 230V and frequency of 50Hz to an output DC voltage of 12V using a transformer, an Envelope Detector and a Voltage Regulator circuits according to Figure \ref{fig:t3}. 
+
+\begin{figure}[h] \centering
+	\includegraphics[width=0.6\linewidth]{t3_circuito.pdf}
+	\vspace{-4.8cm}
+	\caption{Basic circuit achitecture of an AC/DC converter.}
+	\label{fig:t3}
+\end{figure}
+
+To determine the quality of the circuit and architecture built and to compare it with others, a Merit figure will be calculated based on the following equation: 
+
+\begin {equation}
+MERIT = \frac{1}{cost*(ripple(v_O) + average(v_O - 12) + 10^{-6})}   	
+\label{eq:merit}
+\end{equation}
+
+where the $cost$ value states for sum of the tabulated cost of the components used and the $ripple(v_O)$ and $average(v_O-12)$ values will be determined throught the output at the Voltage Regulator.
+
+The AC/DC converter circuit built to be theoretically analysed and simulated is shown in Figure~\ref{fig:t3_circuit}. The nodes and components are designated with numbers. R1 and C1 states for the resistence and capacitor of the Envelope Detector circuir, respectively. R2 states for the resistence of the Voltage Regulator circuit. A Full-Wave Rectifier circuit with 4 diodes was used. The Voltage Regulator circuit was built using 18 diodes.
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{t3_desenho_fixe.pdf}
+	\vspace{-9cm}
+	\caption{Circuit drawn to build the AC/DC Converter.}
+	\label{fig:t3_circuit}
+\end{figure}
+
+The Table \ref{tab:values} shows the values for the resistences and the capacitor used. The n value states for the transformer n:1 ratio used. These values were chosen after running some theoretical and simulation test analysis and are introduced here because they are the values that ended up being used in the last theorethical and simulation analysis, which is the one shown in this report.
+
+\vspace{1.5cm}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/op_TAB}
+	\end{tabular}
+	\caption{Values considered to build the AC/DC converter circuit.}
+	\label{tab:values}
+\end{table}
+
+In Section~\ref{sec:analysis}, a theoretical analysis of the circuit built is presented using the values of Table \ref{tab:values}. In Section~\ref{sec:simulation}, the circuit is analysed by simulation also using the values of Table \ref{tab:values}. In Section~\ref{sec:comparison} the results from theoretical and simulation analysis are compared. The conclusions of this study are outlined in Section~\ref{sec:conclusion}.
+
+
+
