@@ -3,52 +3,203 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section we will analyse the circuit shown in Figure~\ref{fig:t3_circuit} theoretically using Octave tools.\par
-The circuit chosen is the most suitable theoretical model we found that was able to most accurately and ideally predict the output of the Envelope Detector as well as the output of the Voltage Regulator.
+In this section we will analyse the two stages of the circuit shown in Figure~\ref{fig:t3_circuit}, the gain stage and the output stage, theoretically using Octave tools. Both the OP analysis and the frequency analysis for the gain will be calculated.\par
 
-The tranformer with n:1 ration is represented in our circuit by a voltage source of 230/n [V], where n is the value considered in Table \ref{tab:values}. The output of the transformer will be the input of our Envelope detector circuit, which is made of a Full-Wave Rectifier with 4 diodes, a resistence ($R_{envelope}$) and a capacitor ($C_{envelope}$), which values are also in Table \ref{tab:values}. The Full-Wave Rectifier was used because it helps to reduce the ripple by reducing the period corresponding to the wave ripple. The output of the Envelope Detector will be the input of the Voltage Regulator. The voltage regulator is made up of 18 diodes and one resistance ($R_{regulator}$) shown in Table \ref{tab:values}. The resistance is in series with the 18 diodes
+\subsection{Gain Stage}
 
-The diodes used are the ideal+$V_{ON}$ diode model with $V_{ON} = 0.67$.
+For this section we will analyse the part of circuit correspondent to the gain stage, in which was used the BC547A model which use the following values:
 
-The theoretical results of the avarage output voltage at the the Voltage Regulator circuit, i.e, the avarage output voltage of the AC/DC converter circuit, as well as the output voltage ripple, calculated cost, and merit figure are shown in Table \ref{tab:teo}:  
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name [unit]} & {\bf Value} \\ \hline
-    \input{../mat/op2_TAB}
+    \input{../mat/ModelData_TAB}
   \end{tabular}
-  \caption{Results from theoretical analysis.}
+  \caption{BC547A model values.}
   \label{tab:teo}
 \end{table}
 
-The graphic of the Figure \ref{fig:vO_env} shows the output voltage at the Envelope Detector circuit.
+And the used values of the circuit components used where the following:\par
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/UsedValues_TAB}
+	\end{tabular}
+	\caption{Chosen values of the circuit components.}
+	\label{tab:teo}
+\end{table}
+
+
+\subsubsection{Operating Point Analysis}
+
+Doing an operating point analysis in the gain stage circuit, the following values are obtained, these values will be further compared to the results obtained using the NGspice in the conclusion.\par
  
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/GainOP_TAB}
+	\end{tabular}
+	\caption{Gain Stage-Operating Point.}
+	\label{tab:teo}
+\end{table}
+
+\subsubsection{Gain and Impedance results}
+
+The input and output impedance of the gain stage are:\par
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/GainImpedance_TAB}
+	\end{tabular}
+	\caption{Gain Stage Impedance values.}
+	\label{tab:teo}
+\end{table}
+
+And the values for the AV in the gain stage where the following:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/GainAV_TAB}
+	\end{tabular}
+	\caption{Gain Stage AV values.}
+	\label{tab:teo}
+\end{table}
+
+\subsection{Output Stage}
+
+For this section we will analyse the part of circuit correspondent to the output stage, in which was used the following model, BC557A, which use these values:
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/OutputModel_TAB}
+	\end{tabular}
+	\caption{Output model BC557A values.}
+	\label{tab:teo}
+\end{table}
+
+\subsubsection{Operating Point Analysis}
+
+Doing an operating point analysis in the output stage circuit, the following values are obtained, these values will be further compared to the results obtained using the NGspice in the conclusion.\par
+
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/OutputOP_TAB}
+	\end{tabular}
+	\caption{Output Stage-Operating Point.}
+	\label{tab:teo}
+\end{table}
+
+\subsubsection{Gain and Impedance results}
+
+The input and output impedance of the output stage are:\par
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/OutputImpedance_TAB}
+	\end{tabular}
+	\caption{Output Stage Impedance values.}
+	\label{tab:teo}
+\end{table}
+
+And the values for the AV in the gain stage where the following:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/OutputAV_TAB}
+	\end{tabular}
+	\caption{Output Stage AV values.}
+	\label{tab:teo}
+\end{table}
+
+\subsection{Final}
+
+The total and final output values of the circuit are:\par
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/Total_TAB}
+	\end{tabular}
+	\caption{Final and total values.}
+	\label{tab:teo}
+\end{table}
+
+\subsection{Frequency response}
+
+The frequency response of the Gain was obtained using the nodal method and the following matrix:
+
+\begin{equation}
+\begin{bmatrix}
+RS+ZCI+RB & -RB& 0& 0& 0& 0& 0 \\ 
+0 & -ZEB & -ro1 & ZEB+ro1+RC1 & -RC1&  0& 0\\ 
+0 & rpi1*gm1 & 1 & 0 & 0 &  0& 0\\ 
+0 & 0 & 0 & -RC1 & zpi2+RC1 & ZE2 & -ZE2 \\ 
+0 & 0 &0  & 0 & -1-zpi2*gm2  & 1 & 0 \\
+0 & 0 &0  & 0 & 0 & -ZE2 & ZE2+ZCO+RL\\ 
+RB & RB+rpi1+ZEB & 0 & -ZEB & 0 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+V_{1}\\ 
+V_{2}\\ 
+V_{3}\\ 
+V_{5}\\ 
+V_{6}\\ 
+V_{7}\\ 
+V_{8}
+\end{bmatrix}
+=
+\begin{bmatrix}
+V_{input}\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\ 
+0\\ 
+0
+\end{bmatrix}
+\end{equation}
+
+
+And the graphics obtained were the following, these will be compared with the graphics obtained using NGspice in the Conclusion Section of the report.
+
 \begin{figure}[H] \centering
-  \includegraphics[width=0.8\linewidth]{vO_env.eps}
-  \caption{Output voltage at the Envelope Detector.}
-  \label{fig:vO_env}
-\end{figure} 
-
-The graphic of the Figure \ref{fig:vO_reg} shows the output voltage at the Voltage Regulator circuit.
+	\includegraphics[width=0.8\linewidth]{gain_octave.eps}
+	\caption{Frequency response of the gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gain}
+\end{figure}
 
 \begin{figure}[H] \centering
-  \includegraphics[width=0.8\linewidth]{vO_reg.eps}
-  \caption{Output voltage at the Voltage Regulator circuit.}
-  \label{fig:vO_reg}
-\end{figure} 
-
-The graphic of the Figure \ref{fig:vO-12} shows the deviation of output voltage at the Voltage Regulator from 12V.
-
-\begin{figure}[H] \centering
-  \includegraphics[width=0.8\linewidth]{deviation.eps}
-  \caption{Deviation of output voltage at the Voltage Regulator from 12V.}
-  \label{fig:vO-12}
-\end{figure} 
-
-
-
-
-
-
+	\includegraphics[width=0.8\linewidth]{gaindb_octave.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gaindB}
+\end{figure}

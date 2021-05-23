@@ -3,20 +3,71 @@
 \label{sec:comparison}
 \par
 We will now compare the results obtained in the theoretical analysis and the simulation analysis.\par
-\par
-\begin{table}[h]
+
+For the impedance values, the Theoretical Results were the following:
+
+\begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|l|}
-	\hline
-	\textbf{Name} & \textbf{Theoretical} & \textbf{Simulated} \\ \hline
-	Average  & 12.0000 V  & 12.0000 V  \\ \hline
-	Ripple  & 0.000900 V & 0.008640 V  \\ \hline
-	Cost  & 257.2 MU  & 257.2 MU  \\ \hline
-	Merit  & 4.313424  & 0.4499508  \\ \hline
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/ZTOTAL_TAB}
 	\end{tabular}
-	\caption{Results from simulation analysis.}
-	\label{tab:valuessim}
+	\caption{Theoretical Impedance Results.}
+	\label{tab:teo}
 \end{table}
+
+And for the Simulation Analysis the resuslts obtained were:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [Ohm]} \\ \hline
+		\input{../sim/input_TAB}
+	\end{tabular}
+	\caption{Input Impedance Result.}
+	\label{tab:op_sim1}
+\end{table}
+ 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [Ohm]} \\ \hline
+		\input{../sim/output_TAB}
+	\end{tabular}
+	\caption{Ouput Impedance Result.}
+	\label{tab:op_sim1}
+\end{table}
+
+For the Gain frequency response these were the graphics obtained theoretically:
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{gain_octave.eps}
+	\caption{Frequency response of the gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gain}
+\end{figure}
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{gaindb_octave.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gaindB}
+\end{figure}
+
+And the simulation results were:
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{Zout.ps}
+	\caption{Frequency response of the gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:sim_gain}
+\end{figure}
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{Zoutdb.ps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:sim_gaindB}
+\end{figure}
 
 The differences in the results are mainly seen in the value of the output voltage ripple, this difference is mainly due to the difference of the models of diodes and the complexity of the various components used both in Octave and Ngspice.\par
 
@@ -29,5 +80,5 @@ Despite the differences and low merit value on the Ngspice simulation the result
 \section{Conclusion}
 \label{sec:conclusion}
 
-Given the comparison made previously and the results obtained along the work, we can say that the objectives for this laboratory assignment were achieved. In this lab assignment we were able to analyse, create and study a circuit that represents a AC/DC Converter.\par
+Given the comparison made previously and the results obtained along the work, we can say that the objectives for this laboratory assignment were achieved. In this lab assignment we were able to design, create and analyze an amplifier circuit that receives a max of 10mV, using the models provided.\par
 Given all this the objectives for this laboratory assignment were all achieved.
