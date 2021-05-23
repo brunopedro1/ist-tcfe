@@ -2,32 +2,78 @@
 \section{Comparison}
 \label{sec:comparison}
 \par
-We will now compare the results obtained in the theoretical analysis and the simulation analysis.\par
-\par
-\begin{table}[h]
+We will now compare the results of more interest obtained in the theoretical analysis and the simulation analysis.\par
+
+
+For the impedance values, the Theoretical Results were the following:
+
+\begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|l|}
-	\hline
-	\textbf{Name} & \textbf{Theoretical} & \textbf{Simulated} \\ \hline
-	Average  & 12.0000 V  & 12.0000 V  \\ \hline
-	Ripple  & 0.000900 V & 0.008640 V  \\ \hline
-	Cost  & 257.2 MU  & 257.2 MU  \\ \hline
-	Merit  & 4.313424  & 0.4499508  \\ \hline
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/ZTOTAL_TAB}
 	\end{tabular}
-	\caption{Results from simulation analysis.}
-	\label{tab:valuessim}
+	\caption{Theoretical Impedance Results.}
+	\label{tab:teo}
 \end{table}
 
-The differences in the results are mainly seen in the value of the output voltage ripple, this difference is mainly due to the difference of the models of diodes and the complexity of the various components used both in Octave and Ngspice.\par
+And the Simulation results obtained were:
 
-The not very great merit obtained in simulation analysis is due to a bigger than ideal output voltage ripple.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [kOhm]} \\ \hline
+		\input{../sim/input_TAB}
+	\end{tabular}
+	\caption{Simulation Input Impedance Result.}
+	\label{tab:op_sim1}
+\end{table}
+ 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [kOhm]} \\ \hline
+		\input{../sim/output_TAB}
+	\end{tabular}
+	\caption{Simulation Ouput Impedance Result.}
+	\label{tab:op_sim1}
+\end{table}
 
-Despite the differences and low merit value on the Ngspice simulation the results achieved were the best found for the architecture chosen, after many iterations, these values for the various components were the best and the ones that gave us the best results, and most importantly the output voltage of 12 V.
+In both cases the Output Impedance is under enough to prevent signal loss when connecting the circuit to a speaker of 8Ohm.
+
+
+For the Gain Frequency Response this is the graphic obtained theoretically:
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.6\linewidth]{gaindb_octave.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain.}
+	\label{fig:teo_gaindB}
+\end{figure}
+
+And the simulation one is:
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.6\linewidth]{gain.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gaindB}
+\end{figure}
+
+Analyzing these values we notice that there is some difference between the theoretical predicion and the simulation. But we can also notice that, besides the differences, the results obtained were relatively good in both analysis. The simulation analysis gave the best results.
+
+The differences seen in the results can be attributed to diverse causes. The differences between the values of impedance can be due to the fact that in the Simulation, these are not calculated for the intermediate stages of the circuit, while that was done in the theoretical analysis.\par
+These differences also can be given to the fact that the circuit is quite complex, and contains non linear elements like transistors which always influences the accuracy of the results obtained, especially in the Simulation Analysis, so it explains the differences in the results obtained.\par
 
 
 \newpage
 \section{Conclusion}
 \label{sec:conclusion}
 
-Given the comparison made previously and the results obtained along the work, we can say that the objectives for this laboratory assignment were achieved. In this lab assignment we were able to analyse, create and study a circuit that represents a AC/DC Converter.\par
-Given all this the objectives for this laboratory assignment were all achieved.
+Given the comparison made previously and the results obtained along the work, including a merit figure of more than one thousand, we can say that the objectives for this laboratory assignment were achieved and an Audio Amplifier circuit was built successfully. 
+
+
+
+
+

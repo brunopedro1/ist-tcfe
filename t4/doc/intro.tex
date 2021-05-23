@@ -4,10 +4,10 @@
 
 % state the learning objective 
 
-The aim of this laboratory assignment was to design and create an Audio Amplifier circuit, which would receive an input of $10$mV (max.) and connect to a $8$Ohm speaker. The architecture of the gain and output stages were to be designed by the group according to the diagram of Figure \ref{fig:t4}. 
+The aim of this laboratory assignment was to design and create an Audio Amplifier circuit, which would receive an input of 10mV (max.) and connect to a 8Ohm speaker. The architecture of the gain and output stages were to be designed by the group according to the diagram of Figure \ref{fig:t4}. 
 
 \begin{figure}[h] \centering
-	\includegraphics[width=0.6\linewidth]{circuitot4.pdf}
+	\includegraphics[width=0.8\linewidth]{circuitt4.pdf}
 	\caption{Basic circuit achitecture of an Audio Amplifier.}
 	\label{fig:t4}
 \end{figure}
@@ -20,33 +20,34 @@ To determine the quality of the circuit built and to compare it with others, a M
 \label{eq:merit}
 \end{equation}
 
-where the $cost$ value states for sum of the tabulated cost of the components used, $voltageGain$ states for the gain, $bandwidth$ for the frequency bandwidth and $LowerCutOffFreq$ for the lower cut off frequency, of the audio amplifier.
+where the $cost$ value states for sum of the tabulated cost of the components used, $voltageGain$ states for the gain, $Bandwidth$ for the frequency bandwidth and $LowerCutOffFreq$ for the lower cut off frequency, of the audio amplifier.
 
 The Audio Amplifier circuit built to be theoretically analysed and simulated is shown in Figure~\ref{fig:audio_amplifier}. 
-In this laboratory, two different models of Phillips BJT's Transistors were used: BC547A, a NPN transistor used in Gain Stage, and BC557A, a PNP Transistor used in Output Stage
-In this report, the results obtained in theoretical analysis made in octave and simulation made in Ngspice will be shown in their respective sections and, ultimately, compared.
 
 \begin{figure}[H] \centering
-	\includegraphics[width=0.8\linewidth]{audio_amplifier.pdf}
+	\includegraphics[width=1.0\linewidth]{audio_amplifier.pdf}
 	\caption{Circuit drawn to build the Audio Amplifier.}
 	\label{fig:audio_amplifier}
 \end{figure}
 
-The Table \ref{tab:values} shows the values for the resistences and the capacitor used. The n value states for the transformer n:1 ratio used. These values were chosen after running some theoretical and simulation test analysis and are introduced here because they are the values that ended up being used in the last theorethical and simulation analysis, which is the one shown in this report.
+The values chosen for the circuit components used can be seen in Table \ref{teo:values}. These values were chosen after running some theoretical and simulation test analysis and are introduced here because they are the values that ended up being used in the last theorethical and simulation analysis, which is the one shown in this report.
 
-\vspace{1.5cm}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|l|r|}
 		\hline    
-		{\bf Name [unit]} & {\bf Value} \\ \hline
-		\input{../mat/op_TAB}
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/UsedValues_TAB}
 	\end{tabular}
-	\caption{Values considered to build the AC/DC converter circuit.}
+	\caption{Chosen values of the circuit components.}
 	\label{tab:values}
 \end{table}
 
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit built is presented using the values of Table \ref{tab:values}. In Section~\ref{sec:simulation}, the circuit is analysed by simulation also using the values of Table \ref{tab:values}. In Section~\ref{sec:comparison} the results from theoretical and simulation analysis are compared. The conclusions of this study are outlined in Section~\ref{sec:conclusion}.
+In this laboratory, two different models of Phillips BJT's Transistors were used: a NPN transistor BC547A used in Gain Stage and a PNP Transistor BC557A used in Output Stage.
+
+In this report, the results obtained in theoretical analysis made in octave and simulation made in Ngspice will be shown in their respective sections and, ultimately, compared.
+
+In Section~\ref{sec:analysis}, a theoretical analysis of the circuit built is presented using the values of Table \ref{tab:values}. In this analysis a Operating Point, Gain, input/output impedances and frequency response analysis will be done. In Section~\ref{sec:simulation}, the circuit is analysed by simulation in NGSPICE also using the values of Table \ref{tab:values}. In Section~\ref{sec:comparison} the results from theoretical and simulation analysis are compared. The conclusions of this study are outlined in Section~\ref{sec:conclusion}.
 
 
 

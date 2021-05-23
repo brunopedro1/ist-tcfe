@@ -2,16 +2,12 @@ t4out
 
 .param Rin_value=100
 .param Ci_value=1m
-*.param R1_value=80k
-.param R1_value=100k
+.param R1_value=80k
 .param R2_value=20k
-*.param Rc_value=1k
-.param Rc_value=500
+.param Rc_value=300
 .param Re_value=100
-*.param Cb_value=1m
-.param Cb_value=5m
+.param Cb_value=1m
 .param Rout_value=100
-*.param Co_value=1u
 .param Co_value=1.99m
 
 .param RL_value=8
@@ -74,14 +70,14 @@ op
 ac dec 10 10 100MEG
 
 let Zout=abs(v(out)[40]/vout#branch[40]/-1000)
-*let Zout=abs(v(out)[40]/vout#branch[40])
+*let Zout=abs(-v(out)[40]/vout#branch[40])
 
 echo "output_TAB"
 print Zout
 echo "output_END"
 
 *plot 20*log(abs(Zout))
-hardcopy Zout.ps abs(Zout)
+hardcopy Zout.eps abs(Zout)
 hardcopy Zoutdb.ps 20*log(abs(Zout))/log(10)
 
 

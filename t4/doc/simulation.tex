@@ -3,52 +3,96 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-In this section, the circuit built (Figure \ref{fig:t3_circuit}) will be analyzed and simulated using NGSPICE. 
+In this section, the circuit built (Figure \ref{fig:audio_amplifier}) will be analyzed and simulated using NGSPICE. 
 
-Before simulate the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for n of the transformer, for the resistances and for the capacitor in order too obtain a decent merit value, while trying to get a good average and ripple values and a relatively low cost. That is how we ended up using a Full-Wave Rectifier instead of an Half-Wave Rectifier, a Voltage Regulator with 18 diodes and the values shown in Table \ref{tab:values}.
+Before simulate the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for the various components of the circuit to obtain a decent merit value, while trying to get good impedance values and gain response and a relatively low cost. \par
 
-Performing transient analysis for 10 periods (200ms) on NGSPICE to simulate the circuit, and using some functions, the results obtained for the avarage output voltage, ripple of the output voltage ($ripple(v_O)=max(v_O)-min(v_O))$, cost and merit figure, are shown in Table \ref{tab:valuessim} 
 
-\begin{table}[h]
+\subsection{Operating Point}
+
+We calculated the Operating Point for the circuit using NGSPICE tools and obtained the results of Table \ref{tab:sim_op}.
+
+%TABELA OP
+\begin{table}[H]
 	\centering
-	\begin{tabular}{|l|l|}
-		\hline
-		\textbf{Name} & \textbf{Values} \\ \hline
-		Vaverage & 1.200000e+01 V \\ \hline
-		Vmax & 1.200427e+01 V \\ \hline
-		Vmin & 1.199563e+01 V \\ \hline
-		Ripple & 8.640000e-03 V \\ \hline
-		Cost & 257.20000000 MU \\ \hline
-		Merit & 0.4499508024 \\ \hline
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name } & {\bf Value [V]} \\ \hline
+		\input{../sim/oper_TAB.tex}
 	\end{tabular}
-	\caption{Results from simulation analysis.}
-	\label{tab:valuessim}
+	\caption{Simulation Operation Point Analysis.}
+	\label{tab:sim_op}
 \end{table}
 
-The graphic of the Figure \ref{fig:sim_envelope} shows the simulated output voltage at the Envelope Detector circuit.
+
+\subsection{Gain, Cutoff Frequencies, Bandwidth and Merit Figure}
+
+The Gain, lower and upper cutoff frequencies and bandwidth obtained are presented in Table \ref{tab:sim_results}, as well as the total cost of the components used in the circuit and the MERIT value. In Table \ref{tab:sim_results}, "up" states for Upper Cutoff Frequency and "low" for Lower Cutoff Frequency.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../sim/op_TAB}
+	\end{tabular}
+	\caption{Main results from simulation analysis. The Upper and Lower Cutoff Frequencies and bandwidth are expressed in Hz. The cost is in MU (monetary units).}
+	\label{tab:sim_results}
+\end{table}
+
+A human can ear frequencies between 20 Hz to 20 kHz. The Lower Cutoff Frequency obtained in simulation analysis is a little above 20 Hz, but very close to it. The Upper Cutoff Frequency meets the requirements.
+
+\subsection{Input and Output Impedances}
+
+The Table \ref{tab:sim_zin} shows the Input Impedance from simulation analysis.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [kOhm]} \\ \hline
+		\input{../sim/input_TAB}
+	\end{tabular}
+	\caption{Simulated Input Impedance.}
+	\label{tab:sim_zin}
+\end{table}
+
+The Table \ref{tab:sim_zout} shows the Output Impedance from simulation analysis.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [kOhm]} \\ \hline
+		\input{../sim/output_TAB}
+	\end{tabular}
+	\caption{Simulated Output Impedance.}
+	\label{tab:sim_zout}
+\end{table}
+
+
+\subsection{Output Voltage Gain in the Passband}
+The result for the output voltage gain in the passband is shown in Figure \ref{fig:gain_sim}.
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{vo2f.eps}
+	\caption{Output voltage gain in the passband.}
+	\label{fig:gain_sim}
+\end{figure}
+
+
+
+\subsection{Gain Frequency Response}
+
+The gain in terms of frequency is shown in Figure \ref{fig:teo_gaindB}.
 
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{v3.pdf}
-\caption{Output voltage at the Envelope Detector. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
-\label{fig:sim_envelope}
+	\includegraphics[width=0.8\linewidth]{gain.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
+	\label{fig:teo_gaindB}
 \end{figure}
 
-The graphic of the Figure \ref{fig:sim_regulator} shows the simulated output voltage at the Voltage Regulator circuit.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{v4.pdf}
-\caption{Output voltage at the Voltage Regulator circuit. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
-\label{fig:sim_regulator}
-\end{figure}
-
-The graphic of the Figure \ref{fig:sim_vo-12} shows the deviation of the simulated output voltage at the Voltage Regulator from 12V.
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.8\linewidth]{v4-12.pdf}
-\caption{Deviation of the output voltage at the Voltage Regulator from 12V. The \textit{x axis} represents the time in miliseconds and the \textit{y axis} the voltage in Volts.}
-\label{fig:sim_vo-12}
-\end{figure}
 
 
 

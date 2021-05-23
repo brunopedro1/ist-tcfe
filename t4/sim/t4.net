@@ -2,16 +2,12 @@ t4
 
 .param Rin_value=100
 .param Ci_value=1m
-*.param R1_value=80k
-.param R1_value=100k
+.param R1_value=80k
 .param R2_value=20k
-*.param Rc_value=1k
-.param Rc_value=500
+.param Rc_value=300
 .param Re_value=100
-*.param Cb_value=1m
-.param Cb_value=5m
+.param Cb_value=1m
 .param Rout_value=100
-*.param Co_value=1u
 .param Co_value=1.99m
 
 .param RL_value=8
@@ -68,6 +64,19 @@ RL out 0 {RL_value}
 .end
 
 .control
+op
+
+
+echo  "oper_TAB"
+print V(base)  
+print V(coll)  
+print V(emit)  
+print V(emit2) 
+print V(in) 
+print V(in2) 
+print V(out) 
+print Vcc
+echo "oper_END"
 
 
 * time analysis
@@ -85,12 +94,12 @@ hardcopy vo1f.ps vdb(coll)
 
 *plot vdb(out)
 *plot vp(out)
-hardcopy vo2f.ps vdb(out)
+hardcopy vo2f.eps vdb(out)
 
 * gain
 let gain = abs(v(out)[40]/v(in)[40])
-hardcopy gain.ps db(v(out)/v(in))
-hardcopy gain2.ps ph(v(out)/v(in))
+hardcopy gain.eps db(v(out)/v(in))
+hardcopy gain2.eps ph(v(out)/v(in))
 
 let ref = vecmax(vdb(out))-3
 
@@ -121,20 +130,18 @@ echo "input_TAB"
 print Zin
 echo "input_END"
 
-*print all
 
 *plot abs(v(in2)[40]/vin#branch[40]/(-1000))
 print v(in2)[40]/vin#branch[40]/(-1000)
-hardcopy zin.ps abs(v(in2)[40]/vin#branch[40]/(-1000))
+*hardcopy zin.eps abs(v(in2)[40]/vin#branch[40]/(-1000))
 hardcopy zin_db.ps 20*log(abs(v(in2)[40]/vin#branch[40]/(-1000)))/log(10)
 
 *print -v(in2)[40]/vin#branch[40]
-*hardcopy zin.ps abs(-v(in2)/vin#branch)
+hardcopy zin.eps abs(-v(in2)/vin#branch)
 *hardcopy zin_db.ps 20*log(abs(-v(in2)/vin#branch))/log(10)
 
 
 
-*need a different setup to measure output impedance
 
 .endc 
 

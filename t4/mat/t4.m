@@ -14,8 +14,16 @@ VAFN=69.7
 VBEON=0.7
 
 
+ printf("ModelData_TAB \n"); 
+ printf("$V_{A}$ = %f V\n", VAFN);
+ printf("$V_{BEON}$ = %f V \n", VBEON);
+ printf("$V_{T}$ = %f V\n", VT);
+ printf("$beta$ = %f \n", BFN); 
+ printf("ModelData_END \n \n");
+
+
 RE1=100
-RC1=1000
+RC1=300
 RB1=80000
 RB2=20000
 VCC=12
@@ -23,9 +31,23 @@ RS=100
 
 Ci=1e-3;
 Cb=1e-3;
-Co=1e-6;
+Co=1.99e-3;
 RL=8;
 Vinput=1;
+
+
+ printf("UsedValues_TAB \n"); 
+ printf("$V_{CC}$ = %e V\n", VCC);
+ printf("$R_{in}$ = %e Ohm\n", RS); 
+ printf("$R_{1}$ = %e Ohm \n", RB1);
+ printf("$R_{2}$ = %e Ohm \n", RB2);
+ printf("$R_{c}$ = %e Ohm \n", RC1);
+ printf("$R_{E}$ = %e Ohm \n", RE1);
+ printf("$C_{i}$ = %e F \n", Ci);
+ printf("$C_{b}$ = %e F \n", Cb);
+ printf("$C_{o}$ = %e F \n", Co);
+ printf("UsedValues_END \n \n");
+
 
 %op
 RB=1/(1/RB1+1/RB2)
@@ -36,6 +58,7 @@ IE1=(1+BFN)*IB1
 VE1=RE1*IE1
 VO1=VCC-RC1*IC1
 VCE=VO1-VE1
+
 
 
 %incremental
@@ -57,6 +80,9 @@ AVI_DB = 20*log10(abs(AV1))
 AV1simple =  - RSB/RS * gm1*RC1/(1+gm1*RE1)
 AVIsimple_DB = 20*log10(abs(AV1simple))
 
+
+
+ 
 RE1=100
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZX = ro1*((RSB+rpi1)*RE1/(RSB+rpi1+RE1))/(1/(1/ro1+1/(rpi1+RSB)+1/RE1+gm1*rpi1/(rpi1+RSB)))
@@ -67,6 +93,12 @@ RE1=0
 ZI1 = 1/(1/RB+1/(((ro1+RC1+RE1)*(rpi1+RE1)+gm1*RE1*ro1*rpi1 - RE1^2)/(ro1+RC1+RE1)))
 ZO1 = 1/(1/ro1+1/RC1)
 
+printf("Gain_TAB \n"); 
+printf("$Gain_{1}$ = %e \n", abs(AV1));
+printf("$Z_{In1}$ = %e Ohm\n", ZI1);
+printf("$Z_{Out1}$ = %e Ohm\n", ZO1); 
+printf("Gain_END \n \n");
+ 
 %ouput stage
 BFP = 227.3
 VAFP = 37.2
@@ -76,6 +108,20 @@ VI2 = VO1
 IE2 = (VCC-VEBON-VI2)/RE2
 IC2 = BFP/(BFP+1)*IE2
 VO2 = VCC - RE2*IE2
+
+ printf("OutputModel_TAB \n"); 
+ printf("$beta$ = %f \n", BFP); 
+ printf("$V_{AFP}$ = %f V\n", VAFP);
+ printf("$V_{BEON}$ = %f V \n", VEBON);
+ printf("OutputModel_END \n \n");
+ 
+ printf("OutputOP_TAB \n"); 
+ printf("$V_{I2}$ = %e V\n", VI2);
+ printf("$I_{E2}$ = %e A \n", IE2);
+ printf("$I_{C2}$ = %e A \n", IC2);
+ printf("$V_{O2}$ = %e V \n", VO2);
+ printf("OutputOP_END \n \n");
+ 
 
 gm2 = IC2/VT
 go2 = IC2/VAFP
@@ -90,6 +136,15 @@ rpi2 = BFP/gm2;
 ro2 = VAFP/IC2;
 gm2 = IC2/VT;
 
+
+printf("Output_TAB \n"); 
+printf("$Gain_{2}$ = %e \n", abs(AV2));
+printf("$Z_{In2}$ = %e Ohm\n", ZI2);
+printf("$Z_{Out2}$ = %e Ohm\n", ZO2); 
+printf("Output_END \n \n");
+
+
+
 %total
 gB = 1/(1/gpi2+ZO1)
 AV = (gB+gm2/gpi2*gB)/(gB+ge2+go2+gm2/gpi2*gB)*AV1
@@ -97,23 +152,24 @@ AV_DB = 20*log10(abs(AV))
 ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
 
+
+ printf("Total_TAB \n"); 
+ printf("$Gain$ = %e \n", abs(AV));
+ printf("$Z_{In}$ = %e Ohm\n", ZI);
+ printf("$Z_{Out}$ = %e Ohm\n", ZO); 
+ printf("Total_END \n \n");
+ 
+ printf("ZTOTAL_TAB \n"); 
+ printf("$Z_{I}$ = %e Ohm\n", ZI);
+ printf("$Z_{O}$ = %e Ohm\n", ZO); 
+ printf("ZTOTAL_END \n \n");
+
+
+
 % GRANDEZAS PARA PÔR NAS TABELAS
 
-%tabela zin/zout/gain
-diary on
-Zi = ZI
-Zo = ZO
-Zi1 = ZI1
-Zo1 = ZO1
-Zi2 = ZI2
-Zo2 = ZO2
-Gain = abs(AV)
-Gain1 = abs(AV1)
-Gain2 = abs(AV2)
-diary off
-
 %tabela op
-diary on
+
 Vbase = VEQ
 Vcoll = -RC1*IC1+VCC
 Vemit = VE1
@@ -122,9 +178,27 @@ Vin = 0
 Vin2 = 0
 Vout = 0
 Vvcc = VCC
-diary off
+
+
+printf("OP_TAB \n"); 
+printf("$V_{base}$ = %e V\n", Vbase); 
+printf("$V_{coll}$ = %e V\n", Vcoll); 
+printf("$V_{emit}$ = %e V\n", Vemit); 
+printf("$V_{emit2}$ = %e V\n", Vemit2);
+printf("$V_{in}$ = %e V\n", Vin);  
+printf("$V_{in2}$ = %e V\n", Vin2);
+printf("$V_{out}$ = %e V\n", Vout);  
+printf("$V_{CC}$ = %e V\n", VCC); 
+printf("OP_END \n \n");
 
 % FREQUENCY RESPONSE
+f_H=f;
+f_L= (1/(3*Ci)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
+band=f_H - f_L
+
+ printf("LC_TAB \n"); 
+ printf("$Lower CO freq$ = %e Hz\n", f_L);
+ printf("LC_END \n \n");
 
 freq=logspace(1,8);
 
@@ -161,13 +235,15 @@ hfa = figure;
 semilogx(freq, Gain,";gain(f);");
 xlabel ("f [Hz]");
 ylabel ("gain");
-print (hfa, "gain_octave.odg", "-depsc");
+print (hfa, "gain_octave.eps", "-depsc");
 
 % Plot do gain em dB com a frequência
 hfb = figure;
 semilogx(freq, GaindB,";gaindB(f);");
 xlabel ("f [Hz]");
 ylabel ("gain");
-print (hfb, "gaindb_octave.odg", "-depsc");
+print (hfb, "gaindb_octave.eps", "-depsc");
+
+
 
 
