@@ -100,41 +100,7 @@ The total Gain and the Input and Output impedances values of the circuit are sho
 
 \subsection{Gain Frequency Response}
 
-The frequency response of the Gain was obtained using the nodal method and the following matrix:
-
-\begin{equation}
-\begin{bmatrix}
-RS+ZCI+RB & -RB& 0& 0& 0& 0& 0 \\ 
-0 & -ZEB & -ro1 & ZEB+ro1+RC1 & -RC1&  0& 0\\ 
-0 & rpi1*gm1 & 1 & 0 & 0 &  0& 0\\ 
-0 & 0 & 0 & -RC1 & zpi2+RC1 & ZE2 & -ZE2 \\ 
-0 & 0 &0  & 0 & -1-zpi2*gm2  & 1 & 0 \\
-0 & 0 &0  & 0 & 0 & -ZE2 & ZE2+ZCO+RL\\ 
-RB & RB+rpi1+ZEB & 0 & -ZEB & 0 & 0 & 0
-\end{bmatrix}
-\begin{bmatrix}
-V_{1}\\ 
-V_{2}\\ 
-V_{3}\\ 
-V_{5}\\ 
-V_{6}\\ 
-V_{7}\\ 
-V_{8}
-\end{bmatrix}
-=
-\begin{bmatrix}
-V_{input}\\ 
-0\\ 
-0\\ 
-0\\ 
-0\\ 
-0\\ 
-0
-\end{bmatrix}
-\end{equation}
-
-
-And the graphics obtained were the following, these will be compared with the graphics obtained using NGspice in the Conclusion Section of the report.
+The frequency response of the Gain was obtained using the nodal method and the graphics obtained were the following, these will be compared with the graphics obtained using NGspice in the Conclusion Section of the report.
 
 \begin{figure}[H] \centering
 	\includegraphics[width=0.8\linewidth]{gain_octave.eps}
