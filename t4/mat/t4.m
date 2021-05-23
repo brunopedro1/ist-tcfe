@@ -86,6 +86,9 @@ AV2 = gm2/(gm2+gpi2+go2+ge2)
 ZI2 = (gm2+gpi2+go2+ge2)/gpi2/(gpi2+go2+ge2)
 ZO2 = 1/(gm2+gpi2+go2+ge2)
 
+rpi2 = BFP/gm2;
+ro2 = VAFP/IC2;
+gm2 = IC2/VT;
 
 %total
 gB = 1/(1/gpi2+ZO1)
@@ -94,49 +97,40 @@ AV_DB = 20*log10(abs(AV))
 ZI=ZI1
 ZO=1/(go2+gm2/gpi2*gB+ge2+gB)
 
+% GRANDEZAS PARA PÔR NAS TABELAS
 
+%tabela zin/zout/gain
+diary on
+Zi = ZI
+Zo = ZO
+Zi1 = ZI1
+Zo1 = ZO1
+Zi2 = ZI2
+Zo2 = ZO2
+Gain = abs(AV)
+Gain1 = abs(AV1)
+Gain2 = abs(AV2)
+diary off
 
+%tabela op
+diary on
+Vbase = VEQ
+Vcoll = -RC1*IC1+VCC
+Vemit = VE1
+Vemit2 = -RE2*IE2+VCC
+Vin = 0
+Vin2 = 0
+Vout = 0
+Vvcc = VCC
+diary off
 
-f         = logspace(1, 6+2, 10*(log10(100e6/10)));
-w         = f*2*pi;
-GainFreq  = w;
-
-
-for c=1:size(w,2)
-  
-  ZCI = 1/(w(c)*j*CI);
-  ZE1 = RE1;
-  ZCB = 1/(w(c)*j*CB);
-  ZE1CB = 1/(1/ZE1 + 1/ZCB);
-  ZCO = 1/(w(c)*j*CO);
-  ZL = RL
-  ZS = RS
-  
-  AG = [  ZS+ZCI+ZB , -ZB               , 0   , 0               , 0           , 0     , 0             ; ...
-        -ZB       , ZB + zpi1 + ZE1CB , 0   , -ZE1CB          , 0           , 0     , 0             ; ...
-        0         , zpi1*gm1          , 1   , 0               , 0           , 0     , 0             ; ...
-        0         , -ZE1CB            , -zo1, ZE1CB + zo1 + ZC, -ZC         , 0     , 0             ; ...
-        0         , 0                 , 0   , -ZC             , zpi2+ZC     , Zo2E2 , -Zo2E2        ; ...
-        0         , 0                 , 0   , 0               , -1-zpi2*gm2 , 1     , 0             ; ...
-        0         , 0                 , 0   , 0               , 0           , -Zo2E2, Zo2E2+ZCO+ZL ];
-        
-  BG = [  Vin       ; 0                 ; 0   ; 0               ; 0           ; 0     ; 0     ];
-
-  PG = AG\BG;
-
-  GainFreq(c) = PG(7)*ZL/Vin;
-  
-endfor
-
-f_H=f;
-f_L= (1/(3*CS)+ 1/((ZO+RL)*Co) +1/((ZI+RS)*Cb))/(2*pi);
-band=f_H - f_L
+% FREQUENCY RESPONSE
 
 freq=logspace(1,8);
 
 for i=1:50
-wfreq=2*pi*freq(i)
-ZCS   = 1/(wfreq*j*CS);
+wfreq=2*pi*freq(i);
+ZCI   = 1/(wfreq*j*Ci);
 ZCB   = 1/(wfreq*j*Cb);
 ZEB = 1/(1/RE1 + 1/ZCB);
 zpi2  = 1/gpi2;
@@ -144,23 +138,36 @@ zo2   = 1/go2;
 ZE2 = 1/(1/zo2 + 1/RE2);
 ZCO   = 1/(wfreq*j*Co);
 
- HOT = [  RS+ZCS+RB , -RB, 0 , 0 , 0 , 0 , 0; ...
- 	0 , -ZEB , -ro1, ZEB + ro1 + RC1, -RC1, 0, 0 ; ...
-        0 , rpi1*gm1 , 1  , 0 , 0, 0 , 0  ; ...
-        0 , 0 , 0  , -RC1, zpi2+RC1, ZE2 , -ZE2; ...
-        0 , 0  , 0  , 0  , -1-zpi2*gm2 , 1  , 0 ; ...
-        0, 0 , 0  , 0 , 0 , -ZE2, ZE2+ZCO+RL ; ...
-        -RB  , RB + rpi1 + ZEB , 0 , -ZEB  , 0 , 0 , 0 ];
+
+A = [ RS+ZCI+RB , -RB, 0 , 0 , 0 , 0 , 0; ...
+ 	    0 , -ZEB , -ro1, ZEB + ro1 + RC1, -RC1, 0, 0 ; ...
+      0 , rpi1*gm1 , 1  , 0 , 0, 0 , 0  ; ...
+      0 , 0 , 0  , -RC1, zpi2+RC1, ZE2 , -ZE2; ...
+      0 , 0  , 0  , 0  , -1-zpi2*gm2 , 1  , 0 ; ...
+      0, 0 , 0  , 0 , 0 , -ZE2, ZE2+ZCO+RL ; ...
+      RB  , RB + rpi1 + ZEB , 0 , -ZEB  , 0 , 0 , 0 ];
         
-DOG = [Vinput; 0; 0 ; 0 ; 0; 0; 0];
+B = [Vinput; 0; 0 ; 0 ; 0; 0; 0];
 
-Gain= HOT\DOG;
+C = A\B;
 
-GaindB(i) = 20*log10(abs(Gain(7)*RL/Vinput))
+Gain(i) = abs(C(7)*RL/Vinput);
+GaindB(i) = 20*log10(abs(C(7)*RL/Vinput));
+
 endfor
 
+% Plot do gain com a frequência
+hfa = figure;
+semilogx(freq, Gain,";gain(f);");
+xlabel ("f [Hz]");
+ylabel ("gain");
+print (hfa, "gain_octave.odg", "-depsc");
 
-
-
+% Plot do gain em dB com a frequência
+hfb = figure;
+semilogx(freq, GaindB,";gaindB(f);");
+xlabel ("f [Hz]");
+ylabel ("gain");
+print (hfb, "gaindb_octave.odg", "-depsc");
 
 

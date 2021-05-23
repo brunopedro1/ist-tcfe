@@ -2,13 +2,18 @@ t4out
 
 .param Rin_value=100
 .param Ci_value=1m
-.param R1_value=80k
+*.param R1_value=80k
+.param R1_value=100k
 .param R2_value=20k
-.param Rc_value=1k
+*.param Rc_value=1k
+.param Rc_value=500
 .param Re_value=100
-.param Cb_value=1m
+*.param Cb_value=1m
+.param Cb_value=5m
 .param Rout_value=100
-.param Co_value=1u
+*.param Co_value=1u
+.param Co_value=1.99m
+
 .param RL_value=8
 
 .csparam Rin_value={Rin_value}

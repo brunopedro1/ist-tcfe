@@ -2,13 +2,18 @@ t4
 
 .param Rin_value=100
 .param Ci_value=1m
-.param R1_value=80k
+*.param R1_value=80k
+.param R1_value=100k
 .param R2_value=20k
-.param Rc_value=1k
+*.param Rc_value=1k
+.param Rc_value=500
 .param Re_value=100
-.param Cb_value=1m
+*.param Cb_value=1m
+.param Cb_value=5m
 .param Rout_value=100
-.param Co_value=1u
+*.param Co_value=1u
+.param Co_value=1.99m
+
 .param RL_value=8
 
 .csparam Rin_value={Rin_value}
@@ -83,7 +88,7 @@ hardcopy vo1f.ps vdb(coll)
 hardcopy vo2f.ps vdb(out)
 
 * gain
-let gain = db(v(out)[40]/v(in)[40])
+let gain = abs(v(out)[40]/v(in)[40])
 hardcopy gain.ps db(v(out)/v(in))
 hardcopy gain2.ps ph(v(out)/v(in))
 
@@ -100,10 +105,11 @@ let cost=resist+capac+trans*0.1
 let merit=((gain*bandwidth)/(cost*low))
 
 echo "op_TAB"
+print up
 print low
-print cost
-print gain
 print bandwidth
+print gain
+print cost
 print merit
 echo "op_END"
 
