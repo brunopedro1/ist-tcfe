@@ -1,0 +1,115 @@
+\newpage
+\epstopdfsetup{outdir=./}
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section we will theoretically analyse the circuit of FIgure \ref{fig:audio_amplifier} using OCTAVE tools. This analysis will start with an Operating Point analysis and then the two stages of the circuit will be considered, the gain stage and the output stage, to determine the Gain and the Input and Output Impedances in each one and the total values. At last, a gain's frequency response is presented. 
+
+\subsection{Operating Point Analysis}
+
+The theoretical Operating Point analysis can be seen in Table \ref{tab:teo_op}. It will be compared to the simulated Operating Point analysis in Section \ref{sec:comparison}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/OP_TAB}
+	\end{tabular}
+	\caption{Theoretical operating point analysis.}
+	\label{tab:teo_op}
+\end{table}
+
+\subsection{Gain and Impedance results}
+
+The circuit under analysis is made of 2 main stages: Gain Stage and Output Stage. The Gain Stage is responsible for amplify the input signal and, as we will conclude, has a high input and output impedances. This fact means that to avoid signal degradation when the connection to the speaker is done, it is important to drop the output impedance with the Output Stage, which is expected to haver a lower output impedance value. These 2 stages can be connected without significant signal loss because the Output Stage has a input impedance higher than the output impedance of the Gain Stage.
+
+This subsection will adress the Gain and Input and Output impedances values obtained for both Gain and Output stages, as well as the values considered for the total of the circuit. 
+
+\subsubsection{Gain Stage}
+
+For this subsection we will analyse the part of circuit correspondent to the Gain Stage, in which was used the BC547A model which use the following values:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/ModelData_TAB}
+  \end{tabular}
+  \caption{BC547A model values.}
+  \label{tab:BC547A}
+\end{table}
+
+The Gain and the Input and Output impedances values of the Gain Stage are shown in Table \ref{tab:teo_gain}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/Gain_TAB}
+	\end{tabular}
+	\caption{Gain Stage - Gain and Impedance values.}
+	\label{tab:teo_gain}
+\end{table}
+
+\subsubsection{Output Stage}
+
+For this section we will analyse the part of circuit correspondent to the Output Stage, in which was used the model BC557A that uses the following values:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/OutputModel_TAB}
+	\end{tabular}
+	\caption{Output model BC557A values.}
+	\label{tab:BC557A}
+\end{table}
+
+The Gain and the Input and Output impedances values of the Output Stage are shown in Table \ref{tab:teo_output}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/Output_TAB}
+	\end{tabular}
+	\caption{Output Stage - Gain and Impedance values.}
+	\label{tab:teo_output}
+\end{table}
+
+
+\subsection{Total}
+
+The total Gain and the Input and Output impedances values of the circuit are shown in Table \ref{tab:teo_total}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/Total_TAB}
+	\end{tabular}
+	\caption{Theorethical Gain and Impedance total values.}
+	\label{tab:teo_total}
+\end{table}
+
+\subsection{Gain Frequency Response}
+
+The frequency response of the Gain was obtained using the nodal method and the graphics obtained were the following, these will be compared with the graphics obtained using NGspice in the Conclusion Section of the report.
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{gain_octave.eps}
+	\caption{Frequency response of the gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain.}
+	\label{fig:teo_gain}
+\end{figure}
+
+\begin{figure}[H] \centering
+	\includegraphics[width=0.8\linewidth]{gaindb_octave.eps}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain.}
+	\label{fig:teo_gaindB}
+\end{figure}
