@@ -6,7 +6,7 @@ all: ngspice.log ng2
 	$(foreach i, $(NGSTABS), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 	
 
-ngspice.log: ../sim/t4.net
+ngspice.log: ../sim/t5.net
 	ngspice -b $< -o $@
 	
 ng2: ngspice2.log
@@ -17,7 +17,7 @@ ng2: ngspice2.log
 	$(foreach i, $(NGSTABS2), sed -n '/^$i_TAB/,/^$i_END/{p;/^$i_END/q}' $< | grep -v $i_TAB | grep -v $i_END | grep -v '#' | sed 's/\=/\&/g' | sed 's/$$/\\\\ \\hline/g' > $i_tab.tex;)
 
 
-ngspice2.log: ../sim/t4out.net
+ngspice2.log: ../sim/t5out.net
 	ngspice -b $< -o $@
 
 

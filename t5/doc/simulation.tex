@@ -8,22 +8,6 @@
 Before simulate the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for the various components of the circuit to obtain a decent merit value, while trying to get good impedance values and gain response and a relatively low cost. \par
 
 
-\subsection{Operating Point}
-
-We calculated the Operating Point for the circuit using NGSPICE tools and obtained the results of Table \ref{tab:sim_op}.
-
-%TABELA OP
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|l|r|}
-		\hline    
-		{\bf Name } & {\bf Value [V]} \\ \hline
-		\input{../sim/oper_TAB.tex}
-	\end{tabular}
-	\caption{Simulation Operation Point Analysis.}
-	\label{tab:sim_op}
-\end{table}
-
 
 \subsection{Gain, Cutoff Frequencies, Bandwidth and Merit Figure}
 
@@ -34,7 +18,7 @@ The Gain, lower and upper cutoff frequencies and bandwidth obtained are presente
 	\begin{tabular}{|l|r|}
 		\hline    
 		{\bf Name} & {\bf Value} \\ \hline
-		\input{../sim/op_TAB}
+		\input{../sim/merit_TAB}
 	\end{tabular}
 	\caption{Main results from simulation analysis. The Upper and Lower Cutoff Frequencies and bandwidth are expressed in Hz. The cost is in MU (monetary units).}
 	\label{tab:sim_results}
@@ -75,7 +59,7 @@ The Table \ref{tab:sim_zout} shows the Output Impedance from simulation analysis
 The result for the output voltage gain in the passband is shown in Figure \ref{fig:gain_sim}.
 
 \begin{figure}[H] \centering
-	\includegraphics[width=0.8\linewidth]{vo2f.eps}
+	\includegraphics[width=0.8\linewidth]{vo1f.pdf}
 	\caption{Output voltage gain in the passband.}
 	\label{fig:gain_sim}
 \end{figure}
@@ -88,7 +72,7 @@ The gain in terms of frequency is shown in Figure \ref{fig:teo_gaindB}.
 
 
 \begin{figure}[H] \centering
-	\includegraphics[width=0.8\linewidth]{gain.eps}
+	\includegraphics[width=0.8\linewidth]{phase.eps}
 	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
 	\label{fig:teo_gaindB}
 \end{figure}

@@ -63,90 +63,25 @@ R4 inv 0 1000
 
 * load
 RL out 0 8
+VL out 0 0.0 ac 1.0 
 
 .op
 .end
 
 .control
 
-*makes plots in color
-set hcopypscolor=0
-set color0=white
-set color1=black
-set color2=red
-set color3=blue
-set color4=violet
+*output impedance
 
-
-print all
-
-
-
-* time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
-
-
-
-* frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out)
-
-echo vo1f_FIG
-hardcopy vin.ps v(in)
-
-let v(out2) = 180/PI*ph(v(out))
-hardcopy phase.eps v(out2)
+let Zout = abs(v(out)[40]/i(VL)[40])
 
 
-
-*Gain 
-let gain = vecmax(vdb(out))
-let gain_opamp= vecmax(vdb(out_amp))
-
-
-let threshold = vecmax(vdb(out))-3
-meas ac lco WHEN vdb(out) = threshold RISE = 1
-meas ac uco WHEN vdb(out) = threshold CROSS = LAST
-
-
-*central frequency
-
-let centralFreq = sqrt(lco*uco)
-
-
-
-echo  "freq_TAB"
-print centralFreq
-echo  "freq_END"
-
-let Zin = abs(v(in)[40]/Vin#branch[40])
-
-echo  "gain_TAB"
-print gain 
-echo  "gain_END"
-
-echo  "input_TAB"
-print Zin
-echo  "input_END"
-
-*merit
-let gainDev=abs(vecmax(vdb(out))-40)
-let centralDev=abs(centralFreq-1000)
-let cost= (1+1+1+100) + (0.000000220*2)*1000000 + 13323
-let merit=1/(cost*(gainDev+centralDev+(1e-6)))
-
-
-echo  "merit_TAB"
-print gainDev 
-print centralDev 
-print cost 
-print merit
-echo  "merit_END"
+echo "output_TAB"
+print Zout
+echo "output_END"
 
 
 quit
 .endc 
+
+
