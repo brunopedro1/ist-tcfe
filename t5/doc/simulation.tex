@@ -3,32 +3,43 @@
 \section{Simulation Analysis}
 \label{sec:simulation}
 
-~In this section, the circuit built (Figure \ref{fig:audio_amplifier}) will be analyzed and simulated using NGSPICE. 
+~In this section, the circuit built (Figure \ref{fig:t5}) will be analyzed and simulated using NGSPICE. 
 
-Before simulate the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for the various components of the circuit to obtain a decent merit value, while trying to get good impedance values and gain response and a relatively low cost. \par
+Before simulating the circuit shown before, we used NGSPICE tools to simulate different circuit configurations and combinations of values for the various components of the circuit to obtain a decent merit value, while trying to get the central frequency and gain asked. \par
 
 
+\subsection{Output Voltage Gain and Central Frequency}
 
-\subsection{Gain, Cutoff Frequencies, Bandwidth and Merit Figure}
-
-The Gain, lower and upper cutoff frequencies and bandwidth obtained are presented in Table \ref{tab:sim_results}, as well as the total cost of the components used in the circuit and the MERIT value. In Table \ref{tab:sim_results}, "up" states for Upper Cutoff Frequency and "low" for Lower Cutoff Frequency.
+The gain in dB units is given in the Table \ref{tab:sim_gain}.
 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|l|r|}
 		\hline    
-		{\bf Name} & {\bf Value} \\ \hline
-		\input{../sim/merit_TAB}
+		{\bf Name} & {\bf Value [dB]} \\ \hline
+		\input{../sim/gain_TAB}
 	\end{tabular}
-	\caption{Main results from simulation analysis. The Upper and Lower Cutoff Frequencies and bandwidth are expressed in Hz. The cost is in MU (monetary units).}
-	\label{tab:sim_results}
+	\caption{Value of simulated output voltage gain.}
+	\label{tab:sim_gain}
 \end{table}
 
-A human can ear frequencies between 20 Hz to 20 kHz. The Lower Cutoff Frequency obtained in simulation analysis is a little above 20 Hz, but very close to it. The Upper Cutoff Frequency meets the requirements.
+The Upper, Lower and Central Frequencies are given by the Table \ref{tab:sim_freq}. These values will be further discussed in the comparison section of this report, but just by observing we can tell these values are within the values expected, especially the central frequency value which is close to the expected 1kHz.
 
-\subsection{Input and Output Impedances}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value [Hz]} \\ \hline
+		\input{../sim/freq_TAB}
+	\end{tabular}
+	\caption{Simulated upper, lower and central frequencies}
+	\label{tab:sim_freq}
+\end{table}
 
-The Table \ref{tab:sim_zin} shows the Input Impedance from simulation analysis.
+
+\subsection{Input and Output Impedances at Central Frequency}
+
+The Table \ref{tab:sim_zin} shows the Input Impedance at central frequency from simulation analysis.
 
 \begin{table}[H]
 	\centering
@@ -37,11 +48,11 @@ The Table \ref{tab:sim_zin} shows the Input Impedance from simulation analysis.
 		{\bf Name} & {\bf Value [kOhm]} \\ \hline
 		\input{../sim/input_TAB}
 	\end{tabular}
-	\caption{Simulated Input Impedance.}
+	\caption{Simulated Input Impedance at central frequency.}
 	\label{tab:sim_zin}
 \end{table}
 
-The Table \ref{tab:sim_zout} shows the Output Impedance from simulation analysis.
+The Table \ref{tab:sim_zout} shows the Output Impedance at central frequency from simulation analysis.
 
 \begin{table}[H]
 	\centering
@@ -50,34 +61,43 @@ The Table \ref{tab:sim_zout} shows the Output Impedance from simulation analysis
 		{\bf Name} & {\bf Value [kOhm]} \\ \hline
 		\input{../sim/output_TAB}
 	\end{tabular}
-	\caption{Simulated Output Impedance.}
+	\caption{Simulated Output Impedance at central frequency.}
 	\label{tab:sim_zout}
 \end{table}
 
 
-\subsection{Output Voltage Gain in the Passband}
-The result for the output voltage gain in the passband is shown in Figure \ref{fig:gain_sim}.
+\subsection{Merit Figure}
 
+To calculate the merit figure, the values of the output voltage gain deviation from 40dB, the central frequency deviation from 1kHz and the cost of the components used were calculated and can be seen in Table \ref{tab:sim_merit}, as well as the resulting merit figure.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../sim/merit_TAB}
+	\end{tabular}
+	\caption{Values obtained for the merit figure calculation.}
+	\label{tab:sim_merit}
+\end{table}
+
+\vspace{-2.5cm}
+\subsection{Frequency Response}
+
+The simulated output voltage gain in terms of frequency is shown in Figure \ref{fig:sim_gaindB}.
+\vspace{-2cm}
 \begin{figure}[H] \centering
 	\includegraphics[width=0.8\linewidth]{vo1f.pdf}
-	\caption{Output voltage gain in the passband.}
-	\label{fig:gain_sim}
+	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in dB.}
+	\label{fig:sim_gaindB}
 \end{figure}
 
-\pagebreak
-
-\subsection{Gain Frequency Response}
-
-The gain in terms of frequency is shown in Figure \ref{fig:teo_gaindB}.
-
+And the plot of the phase function is given by the graphic of Figure \ref{fig:sim_phase}.
 
 \begin{figure}[H] \centering
 	\includegraphics[width=0.8\linewidth]{phase.eps}
-	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the gain in Volts.}
-	\label{fig:teo_gaindB}
+	\caption {Frequency response of the phase. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the phase in degrees.}
+	\label{fig:sim_phase}
 \end{figure}
-
-
-
 
 

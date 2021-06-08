@@ -3,17 +3,39 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section we will theoretically analyse the circuit of FIgure \ref{fig:audio_amplifier} using OCTAVE tools. This analysis will start with an Operating Point analysis and then the two stages of the circuit will be considered, the gain stage and the output stage, to determine the Gain and the Input and Output Impedances in each one and the total values. At last, a gain's frequency response is presented. 
+In this section we will theoretically analyse the circuit of Figure \ref{fig:t5} using OCTAVE tools. This analysis will start with the calculation of the output voltage gain and central frequency. Then, the input and output impedances at the central frequency previously calculated will be determined. Finally, a frequency response analysis is presented.
 
 
-\subsection{Gain and Impedance results}
-
-The circuit under analysis is made of 2 main stages: Gain Stage and Output Stage. The Gain Stage is responsible for amplify the input signal and, as we will conclude, has a high input and output impedances. This fact means that to avoid signal degradation when the connection to the speaker is done, it is important to drop the output impedance with the Output Stage, which is expected to haver a lower output impedance value. These 2 stages can be connected without significant signal loss because the Output Stage has a input impedance higher than the output impedance of the Gain Stage.
-
-This subsection will adress the Gain and Input and Output impedances values obtained for both Gain and Output stages, as well as the values considered for the total of the circuit. 
+\subsection{Output Voltage Gain and Central Frequency}
 
 
-The Gain and the Input and Output impedances values of the Gain Stage are shown in Table \ref{tab:teo_gain}.
+To determine the central frequency, the angular upper ($\omega_H$) and lower ($\omega_L$) frequencies were calculated using the following expressions:
+
+\begin {equation}
+	\omega_H = \frac{1}{R_2 *C_2}  
+	\label{eq:wh}
+\end{equation}
+
+\begin {equation}
+	\omega_L= \frac{1}{R_1*C_1}   
+	\label{eq:wl}
+\end{equation}
+
+The central frequency is now given by:
+
+\begin {equation}
+	central frequency = \frac{\sqrt{\omega_L * \omega_H }}{2\pi}
+	\label{eq:CentralFreq}
+\end{equation}
+
+The output voltage gain, in dB, was obtained through the following expression
+
+\begin {equation}
+	Gain = 20*log(|\frac{R_1*C_1*\sqrt{\omega_L * \omega_H }*j}{1+R_1*C_1*\sqrt{\omega_L * \omega_H }*j}*(1+\frac{R_3}{R_4})*\frac{1}{1+R_2*C_2*\sqrt{\omega_L * \omega_H }*j}|)
+	\label{eq:gain}
+\end{equation} 
+
+The values obtained are shown in Table \ref{tab:teoresults}.
 
 \begin{table}[H]
 	\centering
@@ -22,24 +44,59 @@ The Gain and the Input and Output impedances values of the Gain Stage are shown 
 		{\bf Name} & {\bf Value} \\ \hline
 		\input{../mat/teoresults_TAB}
 	\end{tabular}
-	\caption{Gain Stage - Gain and Impedance values.}
+	\caption{Theoretical output voltage gain and central frequency.}
 	\label{tab:teoresults}
 \end{table}
 
+\subsection{Input and Output Impedances at Central Frequency}
+
+The input impedance at the central frequency determined previously was calculated using the following expression:
+
+\begin {equation}
+	Z_{in} = |R_1 + \frac{1}{j*\sqrt{\omega_L * \omega_H }*C_1}|
+	\label{eq:Zin}
+\end{equation}  
+
+And the output impedance at the central frequency was calculated using the following expression:
+
+\begin {equation}
+       Z_{out} = |\frac{1}{j*\sqrt{\omega_L * \omega_H }*C_2+\frac{1}{R2}}|
+	\label{eq:Zout}
+\end{equation} 
 
 
-\subsection{Gain Frequency Response}
+Its values are shown in Table \ref{tab:teoresults2}.
 
-The frequency response of the Gain was obtained using the nodal method and the graphics obtained were the following, these will be compared with the graphics obtained using NGspice in the Conclusion Section of the report.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../mat/teoresults2_TAB}
+	\end{tabular}
+	\caption{Theoretical input and output impedances at central frequency.}
+	\label{tab:teoresults2}
+\end{table}
+
+
+\subsection{Frequency Response}
+
+The graphic of Figure \ref{fig:teo_gain} shows the frequency response of the output voltage gain, in dB, of the BandPass Filter.
 
 \begin{figure}[H] \centering
 	\includegraphics[width=0.8\linewidth]{teo_gain.eps}
-	\caption{Frequency response of the gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain.}
+	\caption{Frequency response of the output voltage gain. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain in dB.}
 	\label{fig:teo_gain}
 \end{figure}
 
+The graphic of Figure \ref{fig:teo_phase} shows the frequency response of the phase, in degrees.
+
 \begin{figure}[H] \centering
 	\includegraphics[width=0.8\linewidth]{teo_phase.eps}
-	\caption {Frequency response of the gain in dB scale. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Gain.}
-	\label{fig:teo_gaindB}
+	\caption {Frequency response of the phase. The \textit{x axis} represents the frequency in Hertz (Hz) and the \textit{y axis} the Phase in degrees.}
+	\label{fig:teo_phase}
 \end{figure}
+
+
+
+

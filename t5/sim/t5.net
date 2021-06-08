@@ -109,17 +109,19 @@ let gain_opamp= vecmax(vdb(out_amp))
 
 
 let threshold = vecmax(vdb(out))-3
-meas ac lco WHEN vdb(out) = threshold RISE = 1
-meas ac uco WHEN vdb(out) = threshold CROSS = LAST
+meas ac lowerfreq WHEN vdb(out) = threshold RISE = 1
+meas ac upperfreq WHEN vdb(out) = threshold CROSS = LAST
 
 
 *central frequency
 
-let centralFreq = sqrt(lco*uco)
+let centralFreq = sqrt(lowerfreq*upperfreq)
 
 
 
 echo  "freq_TAB"
+print lowerfreq
+print upperfreq
 print centralFreq
 echo  "freq_END"
 

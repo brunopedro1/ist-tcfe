@@ -35,11 +35,16 @@ Zin = abs(R1 + 1/(j*wO*C1))
 Zout = abs(1/(j*wO*C2+1/R2))
 
 printf("teoresults_TAB \n"); 
-printf("Central frequency = %e Hz \n", f);
 printf("Gain = %e dB\n", gaindb);
+printf("Centralfrequency = %e Hz \n", f);
+printf("teoresults_END \n \n");
+
+
+printf("teoresults2_TAB \n");
 printf("$Z_{input}$ = %e Ohm \n", Zin);
 printf("$Z_{output}$ = %e Ohm \n", Zout);
-printf("teoresults_END \n \n");
+printf("teoresults2_END \n \n");
+
 
 %frequency response
 freq = logspace(1,8,100);

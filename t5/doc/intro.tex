@@ -4,28 +4,27 @@
 
 % state the learning objective 
 
-The aim of this laboratory assignment was to design and create an Audio Amplifier circuit, which would receive an input of 10mV (max.) and connect to a 8Ohm speaker. The architecture of the gain and output stages were to be designed by the group according to the diagram of Figure \ref{fig:t4}. 
+
+The aim of this laboratory assignment was to design and create a BandPass Filter using an OP-AMP with a central frequency of 1kHz and a gain of 40dB.  The architecture of the circuit designed is the one showed in the following diagram of Figure \ref{fig:t5}. These diagram and circuit is heavily inspired by the one proposed in the "in person" lab class. 
 
 
+\begin{figure}[h] \centering
+	\includegraphics[width=1\linewidth]{circuitot5.pdf}
+	\vspace{-2.5cm}
+	\caption{Basic circuit architecture of a BandPass Filter.}
+	\label{fig:t5}
+\end{figure}
 
 To determine the quality of the circuit built and to compare it with others, a Merit figure will be calculated based on the following equation: 
 
 \begin {equation}
-	MERIT = \frac{voltageGain*Bandwidth}{cost*LowerCutOffFreq}   	
+	MERIT = \frac{1}{cost*(GainDeviation + CentralFrequencyDeviation + 10^{6})}  	
 \label{eq:merit}
 \end{equation}
 
-where the $cost$ value states for sum of the tabulated cost of the components used, $voltageGain$ states for the gain, $Bandwidth$ for the frequency bandwidth and $LowerCutOffFreq$ for the lower cut off frequency, of the audio amplifier.
+where the $cost$ value states for sum of the tabulated cost of the components used, $GainDeviation$ states for the gain deviation from 40dB and $CentralFrequencyDeviation$ for the central frequency deviation from 1kHz, of the BandPass Filter.
 
-The Audio Amplifier circuit built to be theoretically analysed and simulated is shown in Figure~\ref{fig:audio_amplifier}. 
-
-\begin{figure}[H] \centering
-	\includegraphics[width=1.0\linewidth]{circuitot5.pdf}
-	\caption{Circuit drawn to build the Bandpass Filter using an OP-AMP.}
-	\label{fig:audio_amplifier}
-\end{figure}
-
-The values chosen for the circuit components used can be seen in Table \ref{teo:values}. These values were chosen after running some theoretical and simulation test analysis and are introduced here because they are the values that ended up being used in the last theorethical and simulation analysis, which is the one shown in this report.
+The values chosen for the circuit components used can be seen in Table \ref{tab:values}. These values were chosen after running some theoretical and simulation test analysis and are introduced here because they are the values that ended up being used in the last theorethical and simulation analysis, which are the ones shown in this report.
 
 \begin{table}[H]
 	\centering
@@ -38,11 +37,12 @@ The values chosen for the circuit components used can be seen in Table \ref{teo:
 	\label{tab:values}
 \end{table}
 
-In this laboratory, two different models of Phillips BJT's Transistors were used: a NPN transistor BC547A used in Gain Stage and a PNP Transistor BC557A used in Output Stage.
+In this laboratory was used a 741 OPAMP model.
 
-In this report, the results obtained in theoretical analysis made in octave and simulation made in Ngspice will be shown in their respective sections and, ultimately, compared.
+In this report, the results obtained in theoretical analysis made in OCTAVE and simulation made in NGSPICE will be shown in their respective sections and, ultimately, compared.
 
-In Section~\ref{sec:analysis}, a theoretical analysis of the circuit built is presented using the values of Table \ref{tab:values}. In this analysis a Operating Point, Gain, input/output impedances and frequency response analysis will be done. In Section~\ref{sec:simulation}, the circuit is analysed by simulation in NGSPICE also using the values of Table \ref{tab:values}. In Section~\ref{sec:comparison} the results from theoretical and simulation analysis are compared. The conclusions of this study are outlined in Section~\ref{sec:conclusion}.
+In Section~\ref{sec:analysis}, a theoretical analysis of the circuit built is presented using the values of Table \ref{tab:values}. In this analysis Gain, input and output impedances at the Central Frequency and frequency response analysis will be done. In Section~\ref{sec:simulation}, the circuit is analysed by simulation in NGSPICE also using the values of Table \ref{tab:values}. In Section~\ref{sec:comparison} the results from theoretical and simulation analysis are compared. The conclusions of this study are outlined in Section~\ref{sec:conclusion}.
+
 
 
 
