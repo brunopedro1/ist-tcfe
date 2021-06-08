@@ -45,6 +45,13 @@ printf("$Z_{input}$ = %e Ohm \n", Zin);
 printf("$Z_{output}$ = %e Ohm \n", Zout);
 printf("teoresults2_END \n \n");
 
+printf("teoresults3_TAB \n"); 
+printf("Gain = %e dB\n", gaindb);
+printf("Centralfrequency = %e Hz \n", f);
+printf("$Z_{input}$ = %e Ohm \n", Zin);
+printf("$Z_{output}$ = %e Ohm \n", Zout);
+printf("teoresults3_END \n \n");
+
 
 %frequency response
 freq = logspace(1,8,100);

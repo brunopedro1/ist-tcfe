@@ -5,36 +5,82 @@
 We will now compare the results of more interest obtained in the theoretical analysis and the simulation analysis.\par
 
 
-For the impedance values, the Theoretical Results were the following:
+For the Output voltage gain frequency response these are the graphics obtained theoretically and from simulation, respectively:
+
+\begin{figure}[!htb]
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{teo_gain.eps}
+         \caption{Theoretical gain frequency response.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{vo1f.pdf}
+         \caption{Simulated gain frequency response.}
+     \end{subfigure}
+\end{figure}
+
+And these are the graphics obtained theoretically and from simulation, respectively, for the phase frequency response:
 
 
+\begin{figure}[H]
+     \begin{subfigure}[H]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{teo_phase.eps}
+         \caption{Theoretical phase frequency response.}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[H]{0.48\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{phase.eps}
+         \caption{Simulated phase frequency response.}
+     \end{subfigure}
+\end{figure}
+
+As we can see the output voltage gain graphics are very similar and behave almost identically. TThe phase graphics may seem different at a first glance, but observing the plot properties we can see they also behave almost identically at first but after a certain a level of frequency the presence of the two capacitors existent on the NGSPICE OP-AMP model, which is only present in the simulation analysis and not the theoretical, changes the value of the phase through a rapid shift before stabilizing again but with different values, again due to the presence of the capacitors in the model used in the simulation.
+
+For the central frequency, input and output impedance values at central frequancy and gain in dB units, the Theoretical Results were the following:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name [unit]} & {\bf Value} \\ \hline
+		\input{../mat/teoresults3_TAB}
+	\end{tabular}
+	\caption{Theoretical Results.}
+	\label{tab:teo}
+\end{table}
 
 And the Simulation results obtained were:
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|r|}
+		\hline    
+		{\bf Name} & {\bf Value} \\ \hline
+		\input{../doc/simres.tex}
+	\end{tabular}
+	\caption{Simulation Results.}
+	\label{tab:sim}
+\end{table}
 
- 
+Analyzing these values we notice that there is some difference between the theoretical predicion and the simulation. Especially in the impedance values these differences are noticeable.
+The differences between the values of impedance can be due to the fact that in the Simulation exists an OP-AMP model that has integrated non-linear components and complex components that will affect the results, while that was not done in the theoretical analysis.
+
+Regarding the frequency values as well the gain values we can also see some differences but now much smaller, both gain values are identical and very close to the pretended 40dB. For the central frequency presents a better value in the simulation analysis versus the theoretical analysis. Once again the complexity of the circuit as well the presence of non-linear components makes the analysis more complex and susceptible to differences between simulation and theoretical analysis.\par 
 
 
-In both cases the Output Impedance is under enough to prevent signal loss when connecting the circuit to a speaker of 8Ohm.
 
 
-For the Gain Frequency Response this is the graphic obtained theoretically:
-
-
-And the simulation one is:
-
-
-Analyzing these values we notice that there is some difference between the theoretical predicion and the simulation. But we can also notice that, besides the differences, the results obtained were relatively good in both analysis. The simulation analysis gave the best results.
-
-The differences seen in the results can be attributed to diverse causes. The differences between the values of impedance can be due to the fact that in the Simulation, these are not calculated for the intermediate stages of the circuit, while that was done in the theoretical analysis.\par
-These differences also can be given to the fact that the circuit is quite complex, and contains non linear elements like transistors which always influences the accuracy of the results obtained, especially in the Simulation Analysis, so it explains the differences in the results obtained.\par
 
 
 \newpage
 \section{Conclusion}
 \label{sec:conclusion}
 
-Given the comparison made previously and the results obtained along the work, including a merit figure of more than one thousand, we can say that the objectives for this laboratory assignment were achieved and an Audio Amplifier circuit was built successfully. 
+Given the results obtained along the work and showed on this laboratory report, we can say that the objective of building a BandPass Filter using an OP-AMP with output voltage gain of 40dB and central frequency of 1kHz was successfully achieved, mainly considering the simulation analysis. As discussed on the comparison section, the results obtained through theoretical analysis in OCTAVE were slightly worse than the simulation ones, mainly due to the complexity of the OP-AMP model necessary to achieve better results.
 
 
 
